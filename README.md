@@ -1,3 +1,3 @@
-# react-starter
+# 甜言蜜语
 
-react webapp development scaffold for mobile and pc, with or without redux/router.
+土味情话，在线生成

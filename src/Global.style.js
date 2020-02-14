@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-
+import ImageBg from './assets/img/bg.love.jpg';
 const GlobalStyle = createGlobalStyle`
   ${reset}
   *{
@@ -25,7 +25,9 @@ const GlobalStyle = createGlobalStyle`
   }
   #root{
     min-height:100vh;
-    background-image:linear-gradient(135deg, rgb(96, 108, 136) 0%, rgb(63, 76, 107) 100%);
+    background-image:url(${ImageBg});
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
   @media screen and (min-width: 320px){

@@ -41,13 +41,22 @@ const StyledWrapper = styled.section`
     background-size: 4rem, 2rem, 1rem;
     background-position: right bottom, left bottom, right top;
     box-shadow: 0 0 1rem #6c352c;
+    .heart {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      width: 3rem;
+      opacity: 0.5;
+      transform: rotate(20deg);
+      display: none;
+    }
     &.starting {
-      background-color: rgb(2, 22, 0);
-      background-image: url(${ImageHeart});
-      background-size: 4rem;
-      background-position: right bottom;
-      background-repeat: no-repeat;
+      background: rgb(244, 176, 243);
+      background: linear-gradient(294deg, rgba(244, 176, 243, 1) 0%, rgba(234, 87, 107, 1) 100%);
       box-shadow: none;
+      .heart {
+        display: block;
+      }
     }
     &:after {
       content: '';
@@ -196,6 +205,7 @@ export default function Card({ handleUpdate }) {
             </p>
           );
         })}
+        <img className="heart" src={ImageHeart} alt="heart" />
       </div>
       <div className="opts">
         <StyledButton className="refresh" onClick={handleUpdate}>

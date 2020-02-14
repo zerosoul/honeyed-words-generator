@@ -4,8 +4,8 @@ import Words from '../assets/words';
 import StyledWordBox from './StyledWordBox';
 
 const AniBlink = keyframes`
-0% { opacity:0;transform: scale(0.5); }
-  50% { opacity:0.6;transform: scale(1); }
+  0% { opacity:0;transform: scale(0.5); }
+  50% { opacity:0.6;transform: scale(1.5); }
   100% { opacity:1;transform: scale(0.5); }
 `;
 const StyledWrapper = styled.section`
@@ -53,7 +53,7 @@ export default function LoadingWords({ handleDone }) {
   useEffect(() => {
     setTimeout(() => {
       handleDone();
-    }, 1000);
+    }, 4000);
   }, [handleDone]);
   return (
     <StyledWrapper>

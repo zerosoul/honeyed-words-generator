@@ -32,18 +32,22 @@ const StyledWrapper = styled.section`
     position: relative;
     padding: 1rem 1.8rem;
     background: rgba(108, 53, 44, 0.8);
-    margin-top: -4rem;
+    margin-top: -2rem;
     max-width: 90vw;
     transform-style: preserve-3d;
+    background-image: url(${ImageHeart}), url(${ImageHeart}), url(${ImageHeart});
     background-repeat: no-repeat;
     background-origin: content-box;
     background-size: 4rem, 2rem, 1rem;
     background-position: right bottom, left bottom, right top;
-    background-image: url(${ImageHeart}), url(${ImageHeart}), url(${ImageHeart});
     box-shadow: 0 0 1rem #6c352c;
     &.starting {
+      background-color: rgb(2, 22, 0);
+      background-image: url(${ImageHeart});
+      background-size: 4rem;
+      background-position: right bottom;
+      background-repeat: no-repeat;
       box-shadow: none;
-      background-color: rgba(0, 0, 0, 0.8);
     }
     &:after {
       content: '';
@@ -52,7 +56,7 @@ const StyledWrapper = styled.section`
       height: 0.8rem;
       border-radius: 50%;
       left: 0;
-      bottom: -1.5rem;
+      bottom: -1rem;
       box-shadow: 0 30px 20px rgba(0, 0, 0, 0.2);
     }
     .line {

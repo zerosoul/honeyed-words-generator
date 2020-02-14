@@ -15,7 +15,9 @@ function updateWords() {
   let result = Words[idx];
   return result;
 }
-
+const ua = navigator.userAgent;
+const isiOSwebview = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(ua);
+const isWebview = ua.toLowerCase().indexOf('micromessenger') > -1 || isiOSwebview;
 const StyledWrapper = styled.section`
   position: fixed;
   top: 0;
@@ -144,6 +146,9 @@ export default function Card({ handleUpdate }) {
     };
   }, [generating]);
   const handleDownload = async () => {
+    if (isWebview) {
+      alert('请在浏览器打开！');
+    }
     console.log('download');
     let ele = document.querySelector('#HONEYED_WORDS_CARD');
     await generateImage(ele);

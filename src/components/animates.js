@@ -2,12 +2,12 @@ import { keyframes } from 'styled-components';
 
 const AniPopIn = keyframes`
 from{
-  transform:rotate(-10deg);
+  transform:rotate(-10deg) translateX(-110px);
   opacity:0;
 }
 to{
 opacity:1;
-  transform:rotate(0);
+  transform:rotate(0) translateX(0);
 }
 `;
 const AniFadeDown = keyframes`

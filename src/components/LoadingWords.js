@@ -48,9 +48,12 @@ export default function LoadingWords({ handleDone }) {
     evt.target.innerHTML = newWord;
   };
   useEffect(() => {
-    setTimeout(() => {
-      handleDone();
-    }, 1000);
+    setTimeout(
+      () => {
+        handleDone();
+      },
+      process.env.NODE_ENV == 'production' ? 3000 : 1000
+    );
   }, [handleDone]);
   return (
     <StyledWrapper>

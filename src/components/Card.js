@@ -2,14 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
-import { shuffle } from '../utils';
+import { shuffle, isMobile } from '../utils';
+import { AniPopIn, AniSlideInDown } from './animates';
 import StyledWordBox from './StyledWordBox';
 import ImageDownload from '../assets/img/download.svg';
 import ImageRefresh from '../assets/img/refresh.svg';
 import ImageHeart from '../assets/img/heart.svg';
 
 import Words from '../assets/words';
-import { AniPopIn } from './animates';
 
 shuffle(Words);
 const ua = navigator.userAgent;
@@ -29,7 +29,7 @@ const StyledWrapper = styled.section`
   backface-visibility: hidden;
   .card {
     position: relative;
-    padding: 1rem 1.8rem;
+    padding: 1.8rem 2rem;
     background: rgba(108, 53, 44, 0.8);
     margin-top: -2rem;
     max-width: 90vw;
@@ -40,6 +40,7 @@ const StyledWrapper = styled.section`
     background-size: 4rem, 2rem, 1rem;
     background-position: right bottom, left bottom, right top;
     box-shadow: 0 0 1rem #6c352c;
+    animation: ${AniSlideInDown} 1s;
     .heart {
       position: absolute;
       bottom: 1rem;
@@ -53,6 +54,7 @@ const StyledWrapper = styled.section`
       background: rgb(244, 176, 243);
       background: linear-gradient(294deg, rgba(244, 176, 243, 1) 0%, rgba(234, 87, 107, 1) 100%);
       box-shadow: none;
+      animation: none;
       .heart {
         display: block;
       }
@@ -97,7 +99,7 @@ const StyledButton = styled.button`
   border: none;
   border-radius: 4px;
   box-shadow: 0 0 8px black;
-  padding: 0.5rem 0.5rem 0.5rem 1.4rem;
+  padding: 0.5rem 0.8rem 0.5rem 1.4rem;
   margin-right: 0.6rem;
   &.refresh {
     background-image: url(${ImageRefresh});
@@ -137,17 +139,19 @@ export default function Card({ handleUpdate }) {
     };
   }, []);
   useEffect(() => {
-    if (generating) {
-      document.onmousemove = null;
-      cardRef.current.style.transform = 'none';
-    } else {
-      document.onmousemove = e => {
-        if (cardRef) {
-          let ax = -(window.innerWidth / 2 - e.pageX) / 20;
-          let ay = (window.innerHeight / 2 - e.pageY) / 10;
-          cardRef.current.style.transform = `rotateY(${ax}deg) rotateX(${ay}deg)`;
-        }
-      };
+    if (!isMobile()) {
+      if (generating) {
+        document.onmousemove = null;
+        cardRef.current.style.transform = 'none';
+      } else {
+        document.onmousemove = e => {
+          if (cardRef) {
+            let ax = -(window.innerWidth / 2 - e.pageX) / 20;
+            let ay = (window.innerHeight / 2 - e.pageY) / 10;
+            cardRef.current.style.transform = `rotateY(${ax}deg) rotateX(${ay}deg)`;
+          }
+        };
+      }
     }
     return () => {
       document.onmousemove = null;

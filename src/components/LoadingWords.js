@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Words from '../assets/words';
 import StyledWordBox from './StyledWordBox';
-import { AniBlink } from './animates';
+import { AniBlink, AniZoomIn } from './animates';
 const StyledWrapper = styled.section`
   position: fixed;
   top: 0;
@@ -12,16 +12,16 @@ const StyledWrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(2, 2, 2, 0.8);
+  /* background-color: rgba(2, 2, 2, 0.8); */
   .words {
-    background-color: rgba(108, 53, 44, 0.4);
-    padding: 1rem;
-    width: 80vw;
+    background-color: rgba(108, 53, 44, 0.8);
+    width: 20rem;
     min-height: 50vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     clip-path: polygon(0 0, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+    animation: ${AniZoomIn} 1s ease-in-out;
   }
 `;
 const WordBox = styled(StyledWordBox)`
@@ -52,7 +52,7 @@ export default function LoadingWords({ handleDone }) {
       () => {
         handleDone();
       },
-      process.env.NODE_ENV == 'production' ? 3000 : 1000
+      process.env.NODE_ENV == 'production' ? 3000 : 3000
     );
   }, [handleDone]);
   return (

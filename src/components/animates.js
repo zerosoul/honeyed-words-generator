@@ -27,39 +27,73 @@ const AniFadeDown = keyframes`
 `;
 const AniBounceInUp = keyframes`
   from,
+  20%,
+  40%,
   60%,
-  75%,
-  90%,
+  80%,
   to {
     animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
-  from {
+  0% {
     opacity: 0;
-    transform: translate3d(0, 3000px, 0);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    transform: scale3d(0.9, 0.9, 0.9);
   }
 
   60% {
     opacity: 1;
-    transform: translate3d(0, -20px, 0);
+    transform: scale3d(1.03, 1.03, 1.03);
   }
 
-  75% {
-    transform: translate3d(0, 10px, 0);
+  80% {
+    transform: scale3d(0.97, 0.97, 0.97);
   }
 
-  90% {
-    transform: translate3d(0, -5px, 0);
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+
+`;
+const AniZoomIn = keyframes`
+ from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+`;
+const AniBlink = keyframes`
+  0% { opacity:0;transform: scale(0.2) rotate(0); }
+  50% { opacity:0.6;transform: scale(2) rotate(30deg); }
+  100% { opacity:1;transform: scale(0.5) rotate(-30deg); }
+`;
+const AniSlideInDown = keyframes`
+ from {
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
   }
 
   to {
     transform: translate3d(0, 0, 0);
   }
-`;
 
-const AniBlink = keyframes`
-  0% { opacity:0;transform: scale(0.5); }
-  50% { opacity:0.6;transform: scale(1.5); }
-  100% { opacity:1;transform: scale(0.5); }
 `;
-export { AniPopIn, AniFadeDown, AniBounceInUp, AniBlink };
+const AniSlideLeft = keyframes`
+ from{
+  transform:translateX(100%)
+}
+to{
+  transform:translateX(0)
+}
+`;
+export { AniSlideLeft, AniPopIn, AniSlideInDown, AniZoomIn, AniFadeDown, AniBounceInUp, AniBlink };

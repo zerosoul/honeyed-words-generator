@@ -4071,6 +4071,11 @@ git-raw-commits@^2.0.0:
     split2 "^2.0.0"
     through2 "^3.0.0"
 
+github-buttons@^2.3.0:
+  version "2.7.0"
+  resolved "https://registry.npm.taobao.org/github-buttons/download/github-buttons-2.7.0.tgz#ce481388a39a8ed91a8073b6d3f1802f0068d52d"
+  integrity sha1-zkgTiKOajtkagHO20/GALwBo1S0=
+
 glob-parent@^3.1.0:
   version "3.1.0"
   resolved "https://registry.npm.taobao.org/glob-parent/download/glob-parent-3.1.0.tgz#9e6af6299d8d3bd2bd40430832bd113df906c5ae"
@@ -6941,6 +6946,13 @@ react-error-overlay@^6.0.5:
   version "6.0.5"
   resolved "https://registry.npm.taobao.org/react-error-overlay/download/react-error-overlay-6.0.5.tgz#55d59c2a3810e8b41922e0b4e5f85dcf239bd533"
   integrity sha1-VdWcKjgQ6LQZIuC05fhdzyOb1TM=
+
+react-github-btn@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.npm.taobao.org/react-github-btn/download/react-github-btn-1.1.1.tgz#d08f6da1683a7994c54163af240d88ba5efa7057"
+  integrity sha1-0I9toWg6eZTFQWOvJA2Iul76cFc=
+  dependencies:
+    github-buttons "^2.3.0"
 
 react-is@^16.7.0:
   version "16.12.0"

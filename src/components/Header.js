@@ -16,7 +16,7 @@ const Wrapper = styled.header`
   justify-content: center;
   .title {
     display: flex;
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 800;
     text-shadow: 0 0 4px black;
   }
@@ -33,10 +33,10 @@ const WordBox = styled(StyledWordBox)`
   .pinyin {
     color: #f1ad93;
     text-transform: capitial;
-    font-size: 1rem;
+    font-size: 1.5rem;
     position: absolute;
     left: 50%;
-    top: -1.5rem;
+    top: -2rem;
     transform: translateX(-50%);
     .w {
       animation: ${AniFadeDown} 1s;
@@ -54,13 +54,13 @@ const StyledButton = styled.button`
   border: none;
   border-radius: 4px;
   box-shadow: 0 0 8px black;
-  padding: 0.5rem 0.5rem 0.5rem 1.4rem;
+  padding: 0.5rem 0.6rem 0.5rem 1.4rem;
   margin-right: 0.6rem;
   background-image: url(${ImageHeart}), url(${ImageHeart});
-  margin-top: 1rem;
-  font-size: 1.4rem;
+  margin-top: 1.5rem;
+  font-size: 2rem;
   animation: ${AniBounceInUp} 1s;
-  animation-delay: 3s;
+  animation-delay: 2.8s;
   animation-fill-mode: both;
 `;
 const titleWords = [

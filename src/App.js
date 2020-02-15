@@ -3,6 +3,8 @@ import Loading from './components/Loading';
 const Header = lazy(() => import('./components/Header'));
 const LoadingWords = lazy(() => import('./components/LoadingWords'));
 const Card = lazy(() => import('./components/Card'));
+const InfoModal = lazy(() => import('./components/InfoModal'));
+
 import styled from 'styled-components';
 const StyledBody = styled.section`
   height: 60vh;
@@ -22,6 +24,8 @@ const App = () => {
   };
   return (
     <Suspense fallback={<Loading />}>
+      <InfoModal />
+
       {!start && <Header handleStart={handleStart} />}
       {start && loading && <LoadingWords handleDone={handleDone} />}
       <StyledBody>{start && !loading && <Card handleUpdate={handleUpdate} />}</StyledBody>

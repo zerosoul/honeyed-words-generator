@@ -1,13 +1,8 @@
 import React, { useEffect } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import Words from '../assets/words';
 import StyledWordBox from './StyledWordBox';
-
-const AniBlink = keyframes`
-  0% { opacity:0;transform: scale(0.5); }
-  50% { opacity:0.6;transform: scale(1.5); }
-  100% { opacity:1;transform: scale(0.5); }
-`;
+import { AniBlink } from './animates';
 const StyledWrapper = styled.section`
   position: fixed;
   top: 0;
@@ -19,6 +14,8 @@ const StyledWrapper = styled.section`
   justify-content: center;
   background-color: rgba(2, 2, 2, 0.8);
   .words {
+    background-color: rgba(108, 53, 44, 0.4);
+    padding: 1rem;
     width: 80vw;
     min-height: 50vh;
     display: flex;
@@ -53,7 +50,7 @@ export default function LoadingWords({ handleDone }) {
   useEffect(() => {
     setTimeout(() => {
       handleDone();
-    }, 4000);
+    }, 1000);
   }, [handleDone]);
   return (
     <StyledWrapper>

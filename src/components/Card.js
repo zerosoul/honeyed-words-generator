@@ -2,19 +2,16 @@ import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
-
+import { shuffle } from '../utils';
 import StyledWordBox from './StyledWordBox';
 import ImageDownload from '../assets/img/download.svg';
 import ImageRefresh from '../assets/img/refresh.svg';
 import ImageHeart from '../assets/img/heart.svg';
 
 import Words from '../assets/words';
+import { AniPopIn } from './animates';
 
-function updateWords() {
-  let idx = Math.floor(Math.random() * Words.length);
-  let result = Words[idx];
-  return result;
-}
+shuffle(Words);
 const ua = navigator.userAgent;
 const isiOSwebview = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(ua);
 const isWebview = ua.toLowerCase().indexOf('micromessenger') > -1 || isiOSwebview;
@@ -58,6 +55,9 @@ const StyledWrapper = styled.section`
       box-shadow: none;
       .heart {
         display: block;
+      }
+      * {
+        animation: none;
       }
     }
     &:after {
@@ -109,6 +109,8 @@ const StyledButton = styled.button`
 const WordBox = styled(StyledWordBox)`
   padding: 0.4rem;
   font-weight: 800;
+  animation: ${AniPopIn} 1s ease forwards;
+  animation-fill-mode: both;
 `;
 const sleep = async (dur = 2) => {
   const misDur = dur * 1000;
@@ -118,14 +120,21 @@ const sleep = async (dur = 2) => {
     }, misDur);
   });
 };
+let wordCount = 0;
+let wordSeq = 1;
+console.log({ Words });
+
 export default function Card({ handleUpdate }) {
   const [words, setWords] = useState('');
   const [generating, setGenerating] = useState(false);
 
   const cardRef = useRef(null);
   useEffect(() => {
-    let newWords = updateWords();
-    setWords(newWords);
+    setWords(Words[(wordSeq - 1) % Words.length]);
+    wordCount = 0;
+    return () => {
+      wordSeq++;
+    };
   }, []);
   useEffect(() => {
     if (generating) {
@@ -136,7 +145,6 @@ export default function Card({ handleUpdate }) {
         if (cardRef) {
           let ax = -(window.innerWidth / 2 - e.pageX) / 20;
           let ay = (window.innerHeight / 2 - e.pageY) / 10;
-          console.log('moving', `rotateY(${ax}deg) rotateX(${ay}deg)`);
           cardRef.current.style.transform = `rotateY(${ax}deg) rotateX(${ay}deg)`;
         }
       };
@@ -197,12 +205,20 @@ export default function Card({ handleUpdate }) {
   return (
     <StyledWrapper>
       <div id="HONEYED_WORDS_CARD" className="card" ref={cardRef}>
-        {words.split('|').map(line => {
+        {words.split('|').map((line, lineIdx) => {
+          let ws = line.split('');
+          if (lineIdx !== 0) {
+            wordCount = wordCount + words.split('|')[lineIdx - 1].length;
+          }
           return (
             <p className="line" key={line}>
-              {line.split('').map((w, idx) => {
+              {ws.map((w, idx) => {
                 return (
-                  <WordBox className="word" key={`${w}-${idx}`}>
+                  <WordBox
+                    style={{ animationDelay: `${0.2 * (wordCount + idx)}s` }}
+                    className="word"
+                    key={`${w}-${idx}`}
+                  >
                     {w}
                   </WordBox>
                 );

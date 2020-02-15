@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import StyledWordBox from './StyledWordBox';
+import { AniPopIn, AniBounceInUp, AniFadeDown } from './animates';
 
 import ImageHeart from '../assets/img/heart.svg';
 const Wrapper = styled.header`
@@ -26,6 +27,9 @@ const WordBox = styled(StyledWordBox)`
   padding: 0.3rem;
   border: 1px solid pink;
   color: #f4b0f3;
+  animation: ${AniPopIn} 1s ease forwards;
+  animation-fill-mode: both;
+
   .pinyin {
     color: #f1ad93;
     text-transform: capitial;
@@ -34,6 +38,10 @@ const WordBox = styled(StyledWordBox)`
     left: 50%;
     top: -1.5rem;
     transform: translateX(-50%);
+    .w {
+      animation: ${AniFadeDown} 1s;
+      animation-fill-mode: both;
+    }
   }
 `;
 const StyledButton = styled.button`
@@ -51,23 +59,32 @@ const StyledButton = styled.button`
   background-image: url(${ImageHeart}), url(${ImageHeart});
   margin-top: 1rem;
   font-size: 1.4rem;
+  animation: ${AniBounceInUp} 1s;
+  animation-delay: 3s;
+  animation-fill-mode: both;
 `;
+const titleWords = [
+  { word: '甜', pinyin: 'tǔ' },
+  { word: '言', pinyin: 'wèi' },
+  { word: '蜜', pinyin: 'qíng' },
+  { word: '语', pinyin: 'huà' }
+];
 export default function Header({ handleStart }) {
   return (
     <Wrapper>
       <div className="title">
-        <WordBox>
-          甜<i className="pinyin">tǔ</i>
-        </WordBox>
-        <WordBox>
-          言<i className="pinyin">wèi</i>
-        </WordBox>
-        <WordBox>
-          蜜<i className="pinyin">qíng</i>
-        </WordBox>
-        <WordBox>
-          语<i className="pinyin">huà</i>
-        </WordBox>
+        {titleWords.map((obj, idx) => {
+          return (
+            <WordBox style={{ animationDelay: `${0.3 * idx}s` }} key={obj.word}>
+              {obj.word}
+              <em className="pinyin">
+                <i className="w" style={{ animationDelay: `${1.2 + 0.3 * idx}s` }}>
+                  {obj.pinyin}
+                </i>
+              </em>
+            </WordBox>
+          );
+        })}
       </div>
       <StyledButton onClick={handleStart}>开始生成</StyledButton>
     </Wrapper>

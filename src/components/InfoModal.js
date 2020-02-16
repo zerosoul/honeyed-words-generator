@@ -46,7 +46,7 @@ const StyledModal = styled.section`
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      width: 90%;
+      width: 100%;
       text-align: left;
       font-size: 0.8rem;
       bottom: -1rem;

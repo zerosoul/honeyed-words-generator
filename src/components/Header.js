@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import StyledWordBox from './StyledWordBox';
-import { AniPopIn, AniBounceInUp, AniFadeDown, AniFloat } from './animates';
+import { AniBubble, AniPopIn, AniBounceInUp, AniFadeDown, AniFloat } from './animates';
 
 import ImageHeart from '../assets/img/heart.svg';
 import ImageLogo from '../assets/img/logo.png';
@@ -53,23 +53,27 @@ const WordBox = styled(StyledWordBox)`
   }
 `;
 const StyledButton = styled.button`
-  background-size: 0.8rem;
-  background-position: 0.4rem center, right center;
-  background-repeat: no-repeat;
   background-color: #60322b;
   cursor: pointer;
   outline: none;
   border: none;
   border-radius: 4px;
   box-shadow: 0 0 8px black;
-  padding: 0.5rem 0.6rem 0.5rem 1.4rem;
-  margin-right: 0.6rem;
-  background-image: url(${ImageHeart}), url(${ImageHeart});
+  padding: 0.5rem 1rem;
   margin-top: 1.5rem;
   font-size: 2rem;
   animation: ${AniBounceInUp} 1s;
   animation-delay: 2.8s;
   animation-fill-mode: both;
+  position: relative;
+  .heart {
+    animation-fill-mode: both;
+    position: absolute;
+    width: 0.8rem;
+    animation: ${AniBubble} 3s ease-in-out infinite;
+    top: 0.2rem;
+    right: 0.2rem;
+  }
 `;
 const titleWords = [
   { word: '甜', pinyin: 'tǔ' },
@@ -95,7 +99,20 @@ export default function Header({ handleStart }) {
           );
         })}
       </div>
-      <StyledButton onClick={handleStart}>开始生成</StyledButton>
+      <StyledButton onClick={handleStart}>
+        开始生成
+        {[1, 2, 3, 4, 5, 6].map((item, idx) => {
+          return (
+            <img
+              style={{ animationDelay: `${idx * 0.3}s` }}
+              key={`${item}-${idx}`}
+              src={ImageHeart}
+              alt="heart"
+              className="heart"
+            />
+          );
+        })}
+      </StyledButton>
     </Wrapper>
   );
 }

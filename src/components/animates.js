@@ -13,11 +13,25 @@ opacity:1;
 const AniFloat = keyframes`
 0%{
   transform: translateY(10px);
-  opacity:0;
+  opacity:0.2;
 }
-50%,100%{
+80%,100%{
 opacity:1;
   transform: translateY(0);
+}
+`;
+const AniBubble = keyframes`
+0%{
+  transform: translateY(10px);
+  opacity:0.2;
+}
+40%,60%{
+  opacity:1;
+  transform: translateY(0);
+}
+80%,100%{
+opacity:0;
+  transform: translateY(-20px);
 }
 `;
 const AniFadeDown = keyframes`
@@ -107,6 +121,7 @@ to{
 }
 `;
 export {
+  AniBubble,
   AniFloat,
   AniSlideLeft,
   AniPopIn,

@@ -30,15 +30,17 @@ const StyledWrapper = styled.section`
   .card {
     position: relative;
     padding: 1.8rem 2rem;
-    background: rgba(108, 53, 44, 0.8);
+    background-color: rgba(108, 53, 44, 0.8);
     margin-top: -2rem;
     max-width: 94vw;
     transform-style: preserve-3d;
-    background-image: url(${ImageHeart}), url(${ImageHeart}), url(${ImageHeart});
-    background-repeat: no-repeat;
-    background-origin: content-box;
-    background-size: 4rem, 2rem, 1rem;
-    background-position: right bottom, left bottom, right top;
+    &.bgs {
+      background-image: url(${ImageHeart}), url(${ImageHeart}), url(${ImageHeart});
+      background-repeat: no-repeat;
+      background-origin: content-box;
+      background-size: 4rem, 2rem, 1rem;
+      background-position: right bottom, left bottom, right top;
+    }
     box-shadow: 0 0 1rem #6c352c;
     animation: ${AniSlideInDown} 1s;
     .heart {
@@ -51,7 +53,6 @@ const StyledWrapper = styled.section`
       display: none;
     }
     &.starting {
-      background-origin: border-box;
       background: rgb(244, 176, 243);
       background: linear-gradient(294deg, rgba(244, 176, 243, 1) 0%, rgba(234, 87, 107, 1) 100%);
       box-shadow: none;
@@ -209,7 +210,7 @@ export default function Card({ handleUpdate }) {
   };
   return (
     <StyledWrapper>
-      <div id="HONEYED_WORDS_CARD" className="card" ref={cardRef}>
+      <div id="HONEYED_WORDS_CARD" className={`card ${generating ? '' : 'bgs'}`} ref={cardRef}>
         {words.split('|').map((line, lineIdx) => {
           let ws = line.split('');
           if (lineIdx !== 0) {

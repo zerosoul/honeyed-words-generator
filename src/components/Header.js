@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import StyledWordBox from './StyledWordBox';
-import { AniPopIn, AniBounceInUp, AniFadeDown } from './animates';
+import { AniPopIn, AniBounceInUp, AniFadeDown, AniFloat } from './animates';
 
 import ImageHeart from '../assets/img/heart.svg';
+import ImageLogo from '../assets/img/logo.png';
 const Wrapper = styled.header`
   position: fixed;
   top: 0;
@@ -14,6 +15,13 @@ const Wrapper = styled.header`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  .logo {
+    width: 6rem;
+    margin-bottom: 3rem;
+    animation-fill-mode: both;
+
+    animation: ${AniFloat} 2s ease-in infinite alternate;
+  }
   .title {
     display: flex;
     font-size: 4rem;
@@ -72,6 +80,7 @@ const titleWords = [
 export default function Header({ handleStart }) {
   return (
     <Wrapper>
+      <img className="logo" src={ImageLogo} alt="logo" />
       <div className="title">
         {titleWords.map((obj, idx) => {
           return (

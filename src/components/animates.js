@@ -10,6 +10,16 @@ opacity:1;
   transform:rotate(0) translateX(0);
 }
 `;
+const AniFloat = keyframes`
+0%{
+  transform: translateY(10px);
+  opacity:0;
+}
+50%,100%{
+opacity:1;
+  transform: translateY(0);
+}
+`;
 const AniFadeDown = keyframes`
  0% {
     opacity: 0;
@@ -96,4 +106,13 @@ to{
   transform:translateX(0)
 }
 `;
-export { AniSlideLeft, AniPopIn, AniSlideInDown, AniZoomIn, AniFadeDown, AniBounceInUp, AniBlink };
+export {
+  AniFloat,
+  AniSlideLeft,
+  AniPopIn,
+  AniSlideInDown,
+  AniZoomIn,
+  AniFadeDown,
+  AniBounceInUp,
+  AniBlink
+};

@@ -34,9 +34,24 @@ const StyledModal = styled.section`
   .reward {
     width: 14rem;
     align-self: center;
-    border: 1px solid #222;
-    border-radius: 0.4rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1.8rem;
+    position: relative;
+    img {
+      width: 100%;
+      border: 1px solid #222;
+    }
+    &:after {
+      content: attr(title);
+      display: block;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      text-align: left;
+      font-size: 0.8rem;
+      bottom: -1rem;
+      text-shadow: 0 0 8px #a09090;
+    }
   }
 
   .line {
@@ -80,8 +95,9 @@ const Modal = () => (
         Fork
       </GitHubButton>
     </div>
-    <img src={ImageReward} alt="reward" className="reward" />
-
+    <div className="reward" title="如果有帮住到您，欢迎打赏~">
+      <img src={ImageReward} alt="reward" title="如果有帮住到您，欢迎打赏~" />
+    </div>
     <div className="copyright">
       <span> Copyright © {new Date().getFullYear()} By </span>
       <a rel="noopener noreferrer" href="https://yangerxiao.com" target="_blank">

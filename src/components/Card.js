@@ -32,7 +32,7 @@ const StyledWrapper = styled.section`
     padding: 1.8rem 2rem;
     background: rgba(108, 53, 44, 0.8);
     margin-top: -2rem;
-    max-width: 90vw;
+    max-width: 94vw;
     transform-style: preserve-3d;
     background-image: url(${ImageHeart}), url(${ImageHeart}), url(${ImageHeart});
     background-repeat: no-repeat;
@@ -51,6 +51,7 @@ const StyledWrapper = styled.section`
       display: none;
     }
     &.starting {
+      background-origin: border-box;
       background: rgb(244, 176, 243);
       background: linear-gradient(294deg, rgba(244, 176, 243, 1) 0%, rgba(234, 87, 107, 1) 100%);
       box-shadow: none;

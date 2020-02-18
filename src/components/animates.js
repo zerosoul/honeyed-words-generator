@@ -89,8 +89,8 @@ const AniBounceInUp = keyframes`
 `;
 const AniZoomIn = keyframes`
  from {
-    opacity: 0;
-    transform: scale3d(0.3, 0.3, 0.3);
+    opacity: .2;
+    transform: scale3d(0.4, 0.4, 0.4);
   }
   50% {
     opacity: 1;

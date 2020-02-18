@@ -1,8 +1,9 @@
 import React, { lazy, Suspense, useState } from 'react';
 import Loading from './components/Loading';
+import LoadingWords from './components/LoadingWords';
+import Card from './components/Card';
 const Header = lazy(() => import('./components/Header'));
-const LoadingWords = lazy(() => import('./components/LoadingWords'));
-const Card = lazy(() => import('./components/Card'));
+
 const InfoModal = lazy(() => import('./components/InfoModal'));
 
 import styled from 'styled-components';

@@ -21,7 +21,7 @@ const StyledWrapper = styled.section`
     flex-wrap: wrap;
     justify-content: center;
     clip-path: polygon(0 0, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
-    animation: ${AniZoomIn} 1s ease-in-out;
+    animation: ${AniZoomIn} 0.5s ease-in-out;
   }
 `;
 const WordBox = styled(StyledWordBox)`
@@ -52,7 +52,7 @@ export default function LoadingWords({ handleDone }) {
       () => {
         handleDone();
       },
-      process.env.NODE_ENV == 'production' ? 3000 : 3000
+      process.env.NODE_ENV == 'production' ? 2000 : 1500
     );
   }, [handleDone]);
   return (

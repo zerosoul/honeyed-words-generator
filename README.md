@@ -2,7 +2,7 @@
 
 ![logo](public/android-chrome-192x192.png)
 
-土味情话，在线生成
+土味情话，在线生成：[https://works.yangerxiao.com/honeyed-words-generator/](https://works.yangerxiao.com/honeyed-words-generator/)
 
 ![demo random words](demo.random.words.png)
 ![demo words result](demo.result.png)

@@ -75,7 +75,7 @@ const StyledWrapper = styled.section`
       box-shadow: 0 30px 20px rgba(0, 0, 0, 0.2);
     }
     .line {
-      margin-bottom: 1rem;
+      margin-bottom: 1.4rem;
       display: flex;
       flex-wrap: wrap;
       font-size: 2rem;
@@ -111,6 +111,8 @@ const StyledButton = styled.button`
   }
 `;
 const WordBox = styled(StyledWordBox)`
+  text-shadow: 0 0 3px black;
+  color: #f4b0f3;
   padding: 0.4rem;
   font-weight: 800;
   animation: ${AniPopIn} 1s ease forwards;

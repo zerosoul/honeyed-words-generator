@@ -28,6 +28,11 @@ const WordBox = styled(StyledWordBox)`
   height: 100%;
   padding: 0.3rem;
   animation: ${AniBlink} 0.4s ease-in-out infinite;
+  border-color: rgba(222, 222, 222, 0.2);
+  &:before,
+  &:after {
+    opacity: 0.5;
+  }
 `;
 const reg = /[\u4e00-\u9fa5]/g;
 // 去重
@@ -52,7 +57,7 @@ export default function LoadingWords({ handleDone }) {
       () => {
         handleDone();
       },
-      process.env.NODE_ENV == 'production' ? 2000 : 1500
+      process.env.NODE_ENV == 'production' ? 1500 : 1500
     );
   }, [handleDone]);
   return (

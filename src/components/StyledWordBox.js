@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 const StyledWordBox = styled.span`
-  border: 2px solid rgba(222, 222, 222, 0.4);
+  border: 2px solid #f1ad93;
   margin-left: -2px;
+  margin-top: -2px;
   position: relative;
   &:before,
   &:after {
@@ -10,13 +11,12 @@ const StyledWordBox = styled.span`
     display: block;
     position: absolute;
     z-index: -1;
-    /* background: rgba(222, 222, 222, 0.1); */
   }
   &:after {
     background-image: linear-gradient(
       90deg,
-      rgba(222, 222, 222, 0.3),
-      rgba(222, 222, 222, 0.3) 75%,
+      #f1ad93,
+      #f1ad93 75%,
       transparent 75%,
       transparent 100%
     );
@@ -30,8 +30,8 @@ const StyledWordBox = styled.span`
   &:before {
     background-image: linear-gradient(
       180deg,
-      rgba(222, 222, 222, 0.3),
-      rgba(222, 222, 222, 0.3) 75%,
+      #f1ad93,
+      #f1ad93 75%,
       transparent 75%,
       transparent 100%
     );

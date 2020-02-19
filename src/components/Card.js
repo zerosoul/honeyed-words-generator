@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
 import { shuffle, isMobile } from '../utils';
-import { AniPopIn, AniSlideInDown } from './animates';
+import { AniPopIn, AniFadeIn, AniSlideInDown } from './animates';
 import StyledWordBox from './StyledWordBox';
 import ImageDownload from '../assets/img/download.svg';
 import ImageRefresh from '../assets/img/refresh.svg';
@@ -34,23 +34,45 @@ const StyledWrapper = styled.section`
     margin-top: -2rem;
     max-width: 94vw;
     transform-style: preserve-3d;
-    &.bgs {
-      background-image: url(${ImageHeart}), url(${ImageHeart}), url(${ImageHeart});
-      background-repeat: no-repeat;
-      background-origin: content-box;
-      background-size: 4rem, 2rem, 1rem;
-      background-position: right bottom, left bottom, right top;
-    }
     box-shadow: 0 0 1rem #6c352c;
+    animation-fill-mode: both;
+
     animation: ${AniSlideInDown} 1s;
     .heart {
       position: absolute;
-      bottom: 1rem;
-      right: 1rem;
-      width: 3rem;
-      opacity: 0.5;
-      transform: rotate(20deg);
-      display: none;
+      animation-fill-mode: both;
+      animation: ${AniFadeIn} 3s ease infinite alternate;
+      opacity: 0;
+      &.heart1 {
+        transform: rotate(20deg);
+        bottom: 1rem;
+        right: 1rem;
+        width: 3rem;
+      }
+      &.heart2 {
+        transform: rotate(-20deg);
+        bottom: 1rem;
+        left: -1rem;
+        width: 1rem;
+      }
+      &.heart3 {
+        transform: rotate(-30deg);
+        top: 1rem;
+        left: 1rem;
+        width: 2rem;
+      }
+      &.heart4 {
+        transform: rotate(40deg);
+        top: 2rem;
+        right: 1.2rem;
+        width: 1.5rem;
+      }
+      &.heart5 {
+        transform: rotate(-10deg);
+        bottom: 2rem;
+        left: 1.2rem;
+        width: 1.8rem;
+      }
     }
     &.starting {
       background: rgb(244, 176, 243);
@@ -234,7 +256,15 @@ export default function Card({ handleUpdate }) {
             </p>
           );
         })}
-        <img className="heart" src={ImageHeart} alt="heart" />
+        {[1, 2, 3, 4, 5].map((num, idx) => (
+          <img
+            style={{ animationDelay: `${idx * 0.3}s` }}
+            key={num}
+            className={`heart heart${num}`}
+            src={ImageHeart}
+            alt="heart"
+          />
+        ))}
       </div>
       <div className="opts">
         <StyledButton className="refresh" onClick={handleUpdate}>

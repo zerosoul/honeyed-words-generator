@@ -1,5 +1,13 @@
 import { keyframes } from 'styled-components';
 
+const AniFadeIn = keyframes`
+from{
+  opacity:0;
+}
+to{
+opacity:0.7;
+}
+`;
 const AniPopIn = keyframes`
 from{
   transform:rotate(-10deg) translateX(-110px);
@@ -127,6 +135,7 @@ export {
   AniPopIn,
   AniSlideInDown,
   AniZoomIn,
+  AniFadeIn,
   AniFadeDown,
   AniBounceInUp,
   AniBlink

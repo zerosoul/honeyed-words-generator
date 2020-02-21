@@ -12,7 +12,6 @@ const StyledWrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: rgba(2, 2, 2, 0.8); */
   .words {
     background-color: rgba(108, 53, 44, 0.8);
     width: 20rem;
@@ -21,6 +20,8 @@ const StyledWrapper = styled.section`
     flex-wrap: wrap;
     justify-content: center;
     clip-path: polygon(0 0, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+  }
+  &.visible .words {
     animation: ${AniZoomIn} 0.5s ease-in-out;
   }
 `;
@@ -46,7 +47,7 @@ const words = [
 ]
   .join('')
   .substring(0, 100);
-export default function LoadingWords({ handleDone }) {
+export default function LoadingWords({ visible = false, handleDone }) {
   const handleUpdateWord = evt => {
     let idx = Math.floor(Math.random() * words.length);
     let newWord = words[idx];
@@ -61,7 +62,7 @@ export default function LoadingWords({ handleDone }) {
     );
   }, [handleDone]);
   return (
-    <StyledWrapper>
+    <StyledWrapper className={visible ? 'visible' : 'hidden'}>
       <div className="words">
         {words.split('').map((word, idx) => {
           return (

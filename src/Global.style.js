@@ -29,7 +29,12 @@ const GlobalStyle = createGlobalStyle`
     background-size: cover;
     background-repeat: no-repeat;
   }
-
+.hidden{
+  visibility:hidden;
+}
+.visibile{
+  visibility:visible;
+}
   @media screen and (min-width: 320px){
       html {
           font-size: 12px;

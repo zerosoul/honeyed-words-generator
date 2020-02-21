@@ -1,20 +1,18 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import html2canvas from 'html2canvas';
-import { saveAs } from 'file-saver';
-import { shuffle, isMobile } from '../utils';
+import { shuffle } from '../utils';
+import CodeQR from 'qrcode.react';
+
+import { getQueryValue } from '../utils';
+import ImageLogo from '../assets/img/logo.png';
+import ImageLover from '../assets/img/lover.bg.png';
+
 import { AniPopIn, AniFadeIn, AniSlideInDown } from './animates';
 import StyledWordBox from './StyledWordBox';
-import ImageDownload from '../assets/img/download.svg';
-import ImageRefresh from '../assets/img/refresh.svg';
 import ImageHeart from '../assets/img/heart.svg';
-
+import ImageNoise from '../assets/img/noise.bg.png';
 import Words from '../assets/words';
 
-shuffle(Words);
-const ua = navigator.userAgent;
-const isiOSwebview = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(ua);
-const isWebview = ua.toLowerCase().indexOf('micromessenger') > -1 || isiOSwebview;
 const StyledWrapper = styled.section`
   position: fixed;
   top: 0;
@@ -25,19 +23,41 @@ const StyledWrapper = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transform: translateZ(0);
   backface-visibility: hidden;
+
+  &.visible .card {
+    animation: ${AniSlideInDown} 1s;
+  }
   .card {
     position: relative;
     padding: 1.8rem 2rem;
     background-color: rgba(108, 53, 44, 0.8);
     margin-top: -2rem;
     max-width: 94vw;
-    transform-style: preserve-3d;
     box-shadow: 0 0 1rem #6c352c;
     animation-fill-mode: both;
-
-    animation: ${AniSlideInDown} 1s;
+    .qr {
+      visibility: hidden;
+      position: absolute;
+      bottom: 0;
+      right: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .tip {
+        font-size: 0.5rem;
+        color: #222;
+        padding: 0.2rem 0;
+      }
+    }
+    .lover {
+      visibility: hidden;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 4rem;
+      opacity: 0.6;
+    }
     .heart {
       position: absolute;
       animation-fill-mode: both;
@@ -75,10 +95,19 @@ const StyledWrapper = styled.section`
       }
     }
     &.starting {
-      background: rgb(244, 176, 243);
-      background: linear-gradient(294deg, rgba(244, 176, 243, 1) 0%, rgba(234, 87, 107, 1) 100%);
+      background-image: url(${ImageNoise});
+      background-repeat: repeat;
       box-shadow: none;
       animation: none;
+      transform: none;
+      .qr,
+      .lover {
+        visibility: visible;
+      }
+      .line .word {
+        color: #222;
+        text-shadow: none;
+      }
       .heart {
         display: block;
       }
@@ -101,35 +130,7 @@ const StyledWrapper = styled.section`
       display: flex;
       flex-wrap: wrap;
       font-size: 2rem;
-      &:nth-child(even) {
-        transform: translateZ(80px);
-      }
-      &:nth-child(odd) {
-        transform: translateZ(100px);
-      }
     }
-  }
-  .opts {
-    margin-top: 5rem;
-  }
-`;
-const StyledButton = styled.button`
-  background-size: 0.8rem;
-  background-position: 0.4rem center;
-  background-repeat: no-repeat;
-  background-color: rgba(2, 2, 2, 0.6);
-  cursor: pointer;
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  box-shadow: 0 0 8px black;
-  padding: 0.5rem 0.8rem 0.5rem 1.4rem;
-  margin-right: 0.6rem;
-  &.refresh {
-    background-image: url(${ImageRefresh});
-  }
-  &.download {
-    background-image: url(${ImageDownload});
   }
 `;
 const WordBox = styled(StyledWordBox)`
@@ -140,110 +141,51 @@ const WordBox = styled(StyledWordBox)`
   animation: ${AniPopIn} 1s ease forwards;
   animation-fill-mode: both;
 `;
-const sleep = async (dur = 2) => {
-  const misDur = dur * 1000;
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve();
-    }, misDur);
-  });
-};
+const wordsIdx = getQueryValue('idx');
+let currWords = '';
+if (wordsIdx) {
+  currWords = Words[wordsIdx];
+  console.log({ currWords });
+}
+const RandomWords = [...Words];
+shuffle(RandomWords);
 let wordCount = 0;
-let wordSeq = 1;
+
+let wordSeq = currWords === '' ? 1 : RandomWords.findIndex(w => w === currWords) + 1;
 console.log({ Words });
 
-export default function Card({ handleUpdate }) {
+export default function Card({ visible = false }) {
   const [words, setWords] = useState('');
-  const [generating, setGenerating] = useState(false);
 
-  const cardRef = useRef(null);
   useEffect(() => {
-    setWords(Words[(wordSeq - 1) % Words.length]);
-    wordCount = 0;
-    return () => {
-      wordSeq++;
-    };
-  }, []);
-  useEffect(() => {
-    if (!isMobile()) {
-      if (generating) {
-        document.onmousemove = null;
-        cardRef.current.style.transform = 'none';
-      } else {
-        document.onmousemove = e => {
-          if (cardRef) {
-            let ax = -(window.innerWidth / 2 - e.pageX) / 20;
-            let ay = (window.innerHeight / 2 - e.pageY) / 10;
-            cardRef.current.style.transform = `rotateY(${ax}deg) rotateX(${ay}deg)`;
-          }
-        };
-      }
-    }
-    return () => {
-      document.onmousemove = null;
-    };
-  }, [generating]);
-  const handleDownload = async () => {
-    if (isWebview) {
-      alert('请在浏览器打开！');
-    }
-    console.log('download');
-    let ele = document.querySelector('#HONEYED_WORDS_CARD');
-    await generateImage(ele);
-  };
-  const generateImage = async (ele, isWebview = false) => {
-    setGenerating(true);
-    await sleep(1);
-    html2canvas(ele, {
-      debug: process.env.NODE_ENV !== 'production',
-      onclone: document => {
-        let tmp = document.querySelector('#HONEYED_WORDS_CARD');
-        tmp.classList.add('starting');
-        if (isWebview) {
-          tmp.style.boxShadow = 'none';
-        }
+    if (visible) {
+      let newWords = RandomWords[(wordSeq - 1) % RandomWords.length];
+      setWords(newWords);
+      wordCount = 0;
+      // 全局变量
+      window.CUR_WORDS_IDX = Words.findIndex(w => w === newWords);
+      console.log('from card CUR_WORDS_IDX', window.CUR_WORDS_IDX);
 
-        console.log('dommmm', tmp.innerHTML);
-      },
-      scale: window.devicePixelRatio * (isWebview ? 2 : 1)
-    }).then(function(canvas) {
-      console.log(canvas);
-      if (isWebview) {
-        console.log('weixin');
-        let img = document.createElement('img');
+      return () => {
+        wordSeq++;
+      };
+    }
+  }, [visible]);
 
-        canvas.toBlob(blob => {
-          const {
-            URL: { createObjectURL }
-          } = window;
-          img.src = createObjectURL(blob);
-          img.classList.add('downloadImg');
-        });
-        ele.classList.add('img');
-        ele.appendChild(img);
-        setGenerating(false);
-      } else {
-        canvas.toBlob(blob => {
-          saveAs(blob, `hw-${new Date().getTime()}.png`);
-          setGenerating(false);
-        }, 'image/png');
-        // saveAs(canvas.toDataURL(), `${name}-${new Date().getTime()}.png`);
-      }
-      ele.classList.remove('starting');
-    });
-  };
   return (
-    <StyledWrapper>
-      <div id="HONEYED_WORDS_CARD" className={`card ${generating ? '' : 'bgs'}`} ref={cardRef}>
+    <StyledWrapper className={visible ? 'visible' : 'hidden'}>
+      <div id="HONEYED_WORDS_CARD" className={`card`}>
         {words.split('|').map((line, lineIdx) => {
           let ws = line.split('');
+          console.log({ ws });
+
           if (lineIdx !== 0) {
             wordCount = wordCount + words.split('|')[lineIdx - 1].length;
           }
           return (
             <p className="line" key={line}>
               {ws.map((w, idx) => {
-                return (
+                return w !== '' ? (
                   <WordBox
                     style={{ animationDelay: `${0.2 * (wordCount + idx)}s` }}
                     className="word"
@@ -251,7 +193,7 @@ export default function Card({ handleUpdate }) {
                   >
                     {w}
                   </WordBox>
-                );
+                ) : null;
               })}
             </p>
           );
@@ -265,14 +207,20 @@ export default function Card({ handleUpdate }) {
             alt="heart"
           />
         ))}
-      </div>
-      <div className="opts">
-        <StyledButton className="refresh" onClick={handleUpdate}>
-          换一句
-        </StyledButton>
-        <StyledButton disabled={generating} className="download" onClick={handleDownload}>
-          保存
-        </StyledButton>
+        <div className="qr">
+          <CodeQR
+            renderAs="svg"
+            imageSettings={{ width: 10, height: 10, src: ImageLogo, excavate: true }}
+            size={50}
+            bgColor="#f2f2f2"
+            level="Q"
+            fgColor="#000"
+            includeMargin={false}
+            value={`${window.location.href.split('?')[0]}?idx=${window.CUR_WORDS_IDX}`}
+          />
+          <div className="tip">土味情话</div>
+        </div>
+        <img src={ImageLover} alt="lover" className="lover" />
       </div>
     </StyledWrapper>
   );

@@ -128,7 +128,18 @@ to{
   transform:translateX(0)
 }
 `;
+const AniSlideInUp = keyframes`
+ from{
+   opacity:0;
+  transform:translateY(20px)
+}
+to{
+   opacity:1;
+  transform:translateY(0)
+}
+`;
 export {
+  AniSlideInUp,
   AniBubble,
   AniFloat,
   AniSlideLeft,

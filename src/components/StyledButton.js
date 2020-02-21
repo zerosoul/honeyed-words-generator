@@ -10,6 +10,7 @@ const StyledButton = styled.button`
   border: none;
   border-radius: 50%;
   box-shadow: 0 0 8px black;
+  padding: 1rem;
   transition: background-image 0.5s;
 `;
 

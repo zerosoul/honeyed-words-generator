@@ -1,4 +1,6 @@
 /* eslint-disable no-useless-escape */
+import URLSearchParams from '@ungap/url-search-params';
+
 export function shuffle(array) {
   let counter = array.length;
   console.log('shuffle', array);
@@ -33,4 +35,17 @@ export function isMobile() {
     isMobile = true;
   }
   return isMobile;
+}
+export function getQueryValue(key = '') {
+  const params = new URLSearchParams(location.search);
+  const val = params.get(key) || '';
+  return val;
+}
+export async function sleep(dur = 2) {
+  const misDur = dur * 1000;
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve();
+    }, misDur);
+  });
 }

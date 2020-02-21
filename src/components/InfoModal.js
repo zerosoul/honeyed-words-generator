@@ -12,7 +12,6 @@ const InfoButton = styled(StyledButton)`
   position: fixed;
   right: 0.5rem;
   bottom: 0.5rem;
-  padding: 0.8rem;
   margin-right: 0.5rem;
   background-image: url(${ImageInfo});
   &.close {
@@ -26,11 +25,13 @@ const StyledModal = styled.section`
   box-shadow: 0 0 8px black;
   position: fixed;
   right: 0.5rem;
-  bottom: 2.5rem;
+  bottom: 3rem;
   background: rgba(2, 2, 2, 0.6);
   padding: 1rem;
-  animation: ${AniSlideLeft} 1s;
   padding: 1rem;
+  &.visible {
+    animation: ${AniSlideLeft} 1s;
+  }
   .reward {
     width: 14rem;
     align-self: center;
@@ -53,7 +54,6 @@ const StyledModal = styled.section`
       text-shadow: 0 0 8px #a09090;
     }
   }
-
   .line {
     display: flex;
     align-items: center;
@@ -70,8 +70,8 @@ const StyledModal = styled.section`
     font-size: 0.5rem;
   }
 `;
-const Modal = () => (
-  <StyledModal className="idleHide">
+const Modal = ({ visible = false }) => (
+  <StyledModal className={visible ? 'visible' : 'hidden'}>
     <div className="line title">土味情话在线生成器</div>
     <div className="line github">
       <GitHubButton
@@ -95,8 +95,8 @@ const Modal = () => (
         Fork
       </GitHubButton>
     </div>
-    <div className="reward" title="如果有帮住到您，欢迎打赏~">
-      <img src={ImageReward} alt="reward" title="如果有帮住到您，欢迎打赏~" />
+    <div className="reward" title="如果有帮助到您，欢迎打赏~">
+      <img src={ImageReward} alt="reward" title="如果有帮助到您，欢迎打赏~" />
     </div>
     <div className="copyright">
       <span> Copyright © {new Date().getFullYear()} By </span>
@@ -114,12 +114,9 @@ export default function InfoModal() {
 
   return (
     <>
-      {visible ? <Modal /> : null}
+      <Modal visible={visible} />
 
-      <InfoButton
-        className={`idleHide ${visible ? 'close' : ''}`}
-        onClick={handleInfoClick}
-      ></InfoButton>
+      <InfoButton className={`${visible ? 'close' : ''}`} onClick={handleInfoClick}></InfoButton>
     </>
   );
 }

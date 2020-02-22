@@ -57,7 +57,7 @@ const StyledModal = styled.section`
     background: #fff;
     position: relative;
     .img {
-      padding-top: 10px;
+      padding-bottom: 10px;
       svg {
         width: 100% !important;
         height: 100% !important;

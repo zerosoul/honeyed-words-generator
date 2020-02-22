@@ -6,6 +6,7 @@ import CodeQR from 'qrcode.react';
 import { getQueryValue } from '../utils';
 import ImageLogo from '../assets/img/logo.png';
 import ImageLover from '../assets/img/lover.bg.png';
+import ImageBirds from '../assets/img/birds.bg.png';
 
 import { AniPopIn, AniFadeIn, AniSlideInDown } from './animates';
 import StyledWordBox from './StyledWordBox';
@@ -36,28 +37,36 @@ const StyledWrapper = styled.section`
     max-width: 94vw;
     box-shadow: 0 0 1rem #6c352c;
     animation-fill-mode: both;
-    .qr {
+
+    .dbg {
       visibility: hidden;
       position: absolute;
-      bottom: 0;
-      right: 0.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      .tip {
-        font-size: 0.5rem;
-        color: #222;
-        padding: 0.2rem 0;
+      &.qr {
+        bottom: 0;
+        right: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .tip {
+          font-size: 0.5rem;
+          color: #222;
+          padding: 0.2rem 0;
+        }
+      }
+      &.lover {
+        bottom: 0;
+        left: 0;
+        width: 4rem;
+        opacity: 0.6;
+      }
+      &.birds {
+        top: 0.4rem;
+        right: 0;
+        width: 5rem;
+        opacity: 0.5;
       }
     }
-    .lover {
-      visibility: hidden;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 4rem;
-      opacity: 0.6;
-    }
+
     .heart {
       position: absolute;
       animation-fill-mode: both;
@@ -100,8 +109,7 @@ const StyledWrapper = styled.section`
       box-shadow: none;
       animation: none;
       transform: none;
-      .qr,
-      .lover {
+      .dbg {
         visibility: visible;
       }
       .line .word {
@@ -130,6 +138,7 @@ const StyledWrapper = styled.section`
       display: flex;
       flex-wrap: wrap;
       font-size: 2rem;
+      font-family: 'AiQing';
     }
   }
 `;
@@ -207,7 +216,7 @@ export default function Card({ visible = false }) {
             alt="heart"
           />
         ))}
-        <div className="qr">
+        <div className="dbg qr">
           <CodeQR
             renderAs="svg"
             imageSettings={{ width: 10, height: 10, src: ImageLogo, excavate: true }}
@@ -216,11 +225,12 @@ export default function Card({ visible = false }) {
             level="Q"
             fgColor="#000"
             includeMargin={false}
-            value={`${window.location.href.split('?')[0]}?idx=${window.CUR_WORDS_IDX}`}
+            value={`${window.location.href.split('?')[0]}`}
           />
           <div className="tip">土味情话</div>
         </div>
-        <img src={ImageLover} alt="lover" className="lover" />
+        <img src={ImageLover} alt="lover" className="dbg lover" />
+        <img src={ImageBirds} alt="birds" className="dbg birds" />
       </div>
     </StyledWrapper>
   );

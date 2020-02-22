@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { AniZoomIn } from './animates';
 
 const StyledButton = styled.button`
   background-size: 1rem 1rem;
@@ -12,6 +13,9 @@ const StyledButton = styled.button`
   box-shadow: 0 0 8px black;
   padding: 1rem;
   transition: background-image 0.5s;
+  &.visible {
+    animation: ${AniZoomIn} 0.5s ease-in-out;
+  }
 `;
 
 export default StyledButton;

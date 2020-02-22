@@ -26,8 +26,7 @@ const App = () => {
   return (
     <Suspense fallback={<Loading />}>
       <InfoModal />
-      <ShareQR visible={start && !loading} />
-
+      {start && !loading && <ShareQR />}
       {!start && <Header handleStart={handleStart} />}
       <LoadingWords visible={start && loading} handleDone={handleDone} />
 

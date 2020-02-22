@@ -143,7 +143,7 @@ const StyledWrapper = styled.section`
   }
 `;
 const WordBox = styled(StyledWordBox)`
-  text-shadow: 0 0 3px black;
+  text-shadow: 0 0 3px rgba(2, 2, 2, 0.5);
   color: #f4b0f3;
   padding: 0.4rem;
   font-weight: 800;

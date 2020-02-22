@@ -30,7 +30,7 @@ const StyledBtnWrapper = styled.div`
     background: rgba(2, 2, 2, 0.6);
     padding: 0.3rem;
     animation: ${AniFadeIn} 1s ease alternate;
-    animation-iteration-count: 5;
+    animation-iteration-count: 8;
   }
 `;
 const StyledModal = styled.section`

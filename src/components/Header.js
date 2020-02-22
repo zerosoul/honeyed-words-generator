@@ -37,7 +37,7 @@ const WordBox = styled(StyledWordBox)`
   color: #f4b0f3;
   animation: ${AniPopIn} 1s ease forwards;
   animation-fill-mode: both;
-
+  font-family: 'AiQing';
   .pinyin {
     color: #f1ad93;
     text-transform: capitial;
@@ -66,6 +66,7 @@ const StyledButton = styled.button`
   animation-delay: 2.8s;
   animation-fill-mode: both;
   position: relative;
+  font-weight: 800;
   .heart {
     animation-fill-mode: both;
     position: absolute;
@@ -100,7 +101,7 @@ export default function Header({ handleStart }) {
         })}
       </div>
       <StyledButton onClick={handleStart}>
-        开始生成
+        开始
         {[1, 2, 3, 4, 5, 6].map((item, idx) => {
           return (
             <img

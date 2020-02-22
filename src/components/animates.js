@@ -30,7 +30,7 @@ opacity:1;
 `;
 const AniBubble = keyframes`
 0%{
-  transform: translateY(10px);
+  transform: translateY(20px);
   opacity:0.2;
 }
 40%,60%{
@@ -39,7 +39,7 @@ const AniBubble = keyframes`
 }
 80%,100%{
 opacity:0;
-  transform: translateY(-20px);
+  transform: translateY(-40px);
 }
 `;
 const AniFadeDown = keyframes`

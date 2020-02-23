@@ -8,7 +8,6 @@ import ImageClose from '../assets/img/close.svg';
 import ImageReward from '../assets/img/reward.jpg';
 import { AniSlideLeft } from './animates';
 const InfoButton = styled(StyledButton)`
-  z-index: 998;
   position: fixed;
   right: 0.5rem;
   bottom: 0.5rem;

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { shuffle } from '../utils';
 import CodeQR from 'qrcode.react';
 
-import { getQueryValue } from '../utils';
+import { getQueryValue, shuffle } from '../utils';
 import ImageLogo from '../assets/img/logo.png';
 import ImageLover from '../assets/img/lover.bg.png';
 import ImageBirds from '../assets/img/birds.bg.png';
@@ -15,6 +14,7 @@ import ImageNoise from '../assets/img/noise.bg.png';
 import Words from '../assets/words';
 
 const StyledWrapper = styled.section`
+  z-index: 997;
   position: fixed;
   top: 0;
   left: 0;
@@ -27,7 +27,7 @@ const StyledWrapper = styled.section`
   backface-visibility: hidden;
 
   &.visible .card {
-    animation: ${AniSlideInDown} 1s;
+    animation: ${AniSlideInDown} 0.5s;
   }
   .card {
     position: relative;
@@ -109,15 +109,18 @@ const StyledWrapper = styled.section`
       box-shadow: none;
       animation: none;
       transform: none;
+      .heart.heart3 {
+        opacity: 0.2;
+      }
       .dbg {
         visibility: visible;
+        &.qr {
+          opacity: 0.8;
+        }
       }
       .line .word {
         color: #222;
         text-shadow: none;
-      }
-      .heart {
-        display: block;
       }
       * {
         animation: none;
@@ -150,6 +153,7 @@ const WordBox = styled(StyledWordBox)`
   animation: ${AniPopIn} 1s ease forwards;
   animation-fill-mode: both;
 `;
+
 const wordsIdx = getQueryValue('idx');
 let currWords = '';
 if (wordsIdx) {

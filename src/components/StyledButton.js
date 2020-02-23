@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { AniZoomIn } from './animates';
 
 const StyledButton = styled.button`
+  z-index: 998;
   background-size: 1rem 1rem;
   background-position: center;
   background-repeat: no-repeat;

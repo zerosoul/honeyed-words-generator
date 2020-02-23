@@ -47,6 +47,7 @@ const words = [
 ]
   .join('')
   .substring(0, 100);
+let timeInter = 0;
 export default function LoadingWords({ visible = false, handleDone }) {
   const handleUpdateWord = evt => {
     let idx = Math.floor(Math.random() * words.length);
@@ -54,12 +55,15 @@ export default function LoadingWords({ visible = false, handleDone }) {
     evt.target.innerHTML = newWord;
   };
   useEffect(() => {
-    setTimeout(
+    timeInter = setTimeout(
       () => {
         handleDone();
       },
       process.env.NODE_ENV == 'production' ? 1500 : 1500
     );
+    return () => {
+      clearTimeout(timeInter);
+    };
   }, [handleDone]);
   return (
     <StyledWrapper className={visible ? 'visible' : 'hidden'}>
@@ -67,7 +71,7 @@ export default function LoadingWords({ visible = false, handleDone }) {
         {words.split('').map((word, idx) => {
           return (
             <WordBox
-              onAnimationIteration={handleUpdateWord}
+              onAnimationIteration={visible ? handleUpdateWord : null}
               style={{ animationDuration: `${2 * Math.random() + 0.2}s` }}
               key={`${word}-${idx}`}
             >

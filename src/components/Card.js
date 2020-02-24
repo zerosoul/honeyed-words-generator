@@ -109,9 +109,6 @@ const StyledWrapper = styled.section`
       box-shadow: none;
       animation: none;
       transform: none;
-      .heart.heart3 {
-        opacity: 0.2;
-      }
       .dbg {
         visibility: visible;
         &.qr {

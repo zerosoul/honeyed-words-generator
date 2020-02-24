@@ -9,6 +9,7 @@ import StartButton from './components/StartButton';
 import RefreshButton from './components/RefreshButton';
 import SaveButton from './components/SaveButton';
 import Card from './components/Card';
+import Words from './assets/words';
 
 const Header = lazy(() => import('./components/Header'));
 
@@ -20,8 +21,10 @@ const MetooButton = styled(StartButton)`
   left: 50%;
   width: 14rem;
   margin-left: -7rem;
+  animation-delay: ${({ wordCount }) => `${wordCount * 0.3}s`};
 `;
 const wordsIdx = getQueryValue('idx');
+const wordCount = wordsIdx !== '' ? Words[wordsIdx].length : 0;
 const hasWords = wordsIdx !== '';
 const App = () => {
   const [start, setStart] = useState(hasWords);
@@ -47,6 +50,7 @@ const App = () => {
       <Card wordsIdx={wordsIdx} visible={start && !loading} />
       {start && !loading && hasWords && (
         <MetooButton
+          wordCount={wordCount}
           onClick={() => {
             location.href = location.href.split('?')[0];
           }}

@@ -22,7 +22,7 @@ const StyledWrapper = styled.button`
     animation-fill-mode: both;
     position: absolute;
     width: 0.8rem;
-    animation: ${AniBubble} 3s ease-in-out infinite;
+    animation: ${AniBubble} 3s ease infinite;
     top: 0.2rem;
     right: 0.2rem;
   }

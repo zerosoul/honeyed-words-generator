@@ -35,11 +35,23 @@ const AniBubble = keyframes`
 }
 40%,60%{
   opacity:1;
-  transform: translateY(0);
+  transform: translate3d(0,0,0);
 }
-80%,100%{
-opacity:0;
-  transform: translateY(-40px);
+70%{
+  opacity:.8;
+  transform: translate3d(5px,-20px,0);
+}
+80%{
+  opacity:0.6;
+  transform: translate3d(0,-30px,0);
+}
+90%{
+  opacity:0.4;
+  transform: translate3d(-5px,-40px,0);
+}
+100%{
+  opacity:0.2;
+  transform: translate3d(0,-50px,0);
 }
 `;
 const AniFadeDown = keyframes`

@@ -1,9 +1,6 @@
-const path = require('path');
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const paths = require('./paths');
 const HappyPack = require('happypack');
-const AutoDllPlugin = require('autodll-webpack-plugin');
 
 module.exports = {
   resolve: {
@@ -81,21 +78,7 @@ module.exports = {
               minifyCSS: true,
               minifyURLs: true
             }
-    }),
-    new AutoDllPlugin(
-      process.env.NODE_ENV === 'development'
-        ? {}
-        : {
-            context: path.join(__dirname, '..'),
-            inject: true, //自动在index.html引入dll
-            debug: true,
-            filename: '[name]_[hash].dll.js',
-            path: './dll',
-            entry: {
-              react: ['react', 'react-dom', 'styled-components']
-            }
-          }
-    )
+    })
   ],
   // node中用到，但是浏览器不用到的类库，给出空对象模拟
   node: {

@@ -1,6 +1,6 @@
 {
   "name": "honeyed-words-generator",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "土味情话，在线生成",
   "main": "index.js",
   "scripts": {

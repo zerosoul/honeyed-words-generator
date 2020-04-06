@@ -8,6 +8,7 @@ import LoadingWords from './components/LoadingWords';
 import StartButton from './components/StartButton';
 import RefreshButton from './components/RefreshButton';
 import SaveButton from './components/SaveButton';
+import AddWords from './components/AddWords';
 import Card from './components/Card';
 import Words from './assets/words';
 
@@ -43,6 +44,7 @@ const App = () => {
     <Suspense fallback={<Loading />}>
       {!hasWords && <InfoModal />}
       {start && !loading && !hasWords && <ShareQR />}
+      {!loading && !hasWords && <AddWords />}
       <RefreshButton visible={start && !loading && !hasWords} handleUpdate={handleUpdate} />
       <SaveButton visible={start && !loading && !hasWords} />
       {!start && <Header handleStart={handleStart} />}

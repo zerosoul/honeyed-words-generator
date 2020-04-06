@@ -28,6 +28,7 @@ const GlobalStyle = createGlobalStyle`
     background-image:url(${ImageBg});
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
   }
 .hidden{
   visibility:hidden;

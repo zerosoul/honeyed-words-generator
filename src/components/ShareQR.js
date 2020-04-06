@@ -18,8 +18,8 @@ const ShareButton = styled(StyledButton)`
 const StyledBtnWrapper = styled.div`
   z-index: 998;
   position: fixed;
-  right: 3rem;
-  bottom: 0.5rem;
+  right: 1rem;
+  top: 1rem;
   margin-right: 0.5rem;
   .tip {
     position: absolute;
@@ -38,10 +38,14 @@ const StyledModal = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   box-shadow: 0 0 8px black;
   position: fixed;
-  right: 2.5rem;
-  bottom: 3rem;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
   background: rgba(2, 2, 2, 0.8);
   padding: 1rem;
   padding: 1rem;
@@ -85,12 +89,12 @@ const Modal = ({ visible = false }) => {
     if (visible) {
       html2canvas(qrEle, {
         debug: process.env.NODE_ENV !== 'production',
-        onclone: doc => {
+        onclone: (doc) => {
           let tmp = doc.querySelector('#QR_DOWNLOAD');
           tmp.classList.remove('hidden');
         },
         scale: window.devicePixelRatio * 2
-      }).then(cvs => {
+      }).then((cvs) => {
         const tmp = cvs.toDataURL();
         setImgSrc(tmp);
         qrEle.classList.remove('hidden');
@@ -126,7 +130,7 @@ const Modal = ({ visible = false }) => {
 export default function ShareQR() {
   const [expand, setExpand] = useState(false);
   const handleClick = () => {
-    setExpand(prev => !prev);
+    setExpand((prev) => !prev);
   };
 
   return (

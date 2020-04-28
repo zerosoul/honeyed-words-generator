@@ -11,7 +11,6 @@ import { AniPopIn, AniFadeIn, AniSlideInDown } from './animates';
 import StyledWordBox from './StyledWordBox';
 import ImageHeart from '../assets/img/heart.svg';
 import ImageNoise from '../assets/img/noise.bg.png';
-import Words from '../assets/words';
 
 const StyledWrapper = styled.section`
   z-index: 997;
@@ -138,7 +137,6 @@ const StyledWrapper = styled.section`
       display: flex;
       flex-wrap: wrap;
       font-size: 2rem;
-      font-family: 'AiQing';
     }
   }
 `;
@@ -153,34 +151,35 @@ const WordBox = styled(StyledWordBox)`
 
 const wordsIdx = getQueryValue('idx');
 let currWords = '';
-if (wordsIdx) {
-  currWords = Words[wordsIdx];
-  console.log({ currWords });
-}
-const RandomWords = [...Words];
-shuffle(RandomWords);
+
 let wordCount = 0;
 
-let wordSeq = currWords === '' ? 1 : RandomWords.findIndex(w => w === currWords) + 1;
-console.log({ Words });
-
-export default function Card({ visible = false }) {
+export default function Card({ wordArr = [], visible = false }) {
   const [words, setWords] = useState('');
 
   useEffect(() => {
-    if (visible) {
+    if (visible && wordArr.length > 0) {
+      if (wordsIdx) {
+        currWords = wordArr[wordsIdx];
+        console.log({ currWords });
+      }
+      const RandomWords = [...wordArr];
+      shuffle(RandomWords);
+      let wordSeq = currWords === '' ? 1 : RandomWords.findIndex((w) => w === currWords) + 1;
       let newWords = RandomWords[(wordSeq - 1) % RandomWords.length];
+      console.log({ newWords });
+
       setWords(newWords);
       wordCount = 0;
       // 全局变量
-      window.CUR_WORDS_IDX = Words.findIndex(w => w === newWords);
+      window.CUR_WORDS_IDX = wordArr.findIndex((w) => w === newWords);
       console.log('from card CUR_WORDS_IDX', window.CUR_WORDS_IDX);
 
       return () => {
         wordSeq++;
       };
     }
-  }, [visible]);
+  }, [visible, wordArr]);
 
   return (
     <StyledWrapper className={visible ? 'visible' : 'hidden'}>

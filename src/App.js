@@ -38,7 +38,17 @@ const App = () => {
   console.log({ data });
   useEffect(() => {
     if (error) {
-      alert('接口报错了，请联系作者，VX:yanggc_2018');
+      const { graphQLErrors } = error;
+      console.log({ graphQLErrors });
+
+      const {
+        extensions: { code }
+      } = graphQLErrors[0];
+      if (code == 'access-denied') {
+        alert('缺少token，无权访问');
+      } else {
+        alert('接口报错了，请联系作者，VX:yanggc_2018');
+      }
     }
   }, [error]);
   useEffect(() => {

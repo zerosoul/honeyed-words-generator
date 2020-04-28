@@ -57,7 +57,8 @@ module.exports = merge(commonConfig, {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('development')
+        NODE_ENV: JSON.stringify('development'),
+        TOKEN: JSON.stringify(process.env.TOKEN)
       }
     }),
     // Add module names to factory functions so they appear in browser profiler.

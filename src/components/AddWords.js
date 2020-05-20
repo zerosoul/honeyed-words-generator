@@ -44,7 +44,7 @@ const StyledModal = styled.section`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(2, 2, 2, 0.9);
+  background: rgba(2, 2, 2, 0.8);
   padding: 1rem;
   &.visible {
     animation: ${AniSlideInUp} 1s;
@@ -130,7 +130,7 @@ const Modal = ({ visible = false }) => {
           onChange={handleChange}
           name="content"
           id="content"
-          placeholder={`注意断句与换行，举例:\n小猪佩奇\n你配我`}
+          placeholder={`情话(注意断句与换行），举例:\n小猪佩奇\n你配我`}
           rows="8"
         ></textarea>
         <textarea
@@ -139,7 +139,7 @@ const Modal = ({ visible = false }) => {
           onChange={handleRemarkChange}
           name="remark"
           id="remark"
-          placeholder={`备注，可以填：\n您的大名/情话来源/想给作者的留言/联系方式`}
+          placeholder={`备注，可填：\n您的大名/情话来源/想给作者的留言/联系方式/等等`}
           rows="4"
         ></textarea>
         <button disabled={loading || !content} className="submit" onClick={handleSubmit}>

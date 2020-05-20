@@ -68,6 +68,7 @@ const StyledModal = styled.section`
       padding: 0.4rem 0.6rem;
     }
     .submit {
+      background: #fff;
       padding: 0.4rem 0.8rem;
       cursor: pointer;
       &[disabled] {
@@ -128,7 +129,7 @@ const Modal = ({ visible = false }) => {
           placeholder={`注意断句与换行，举例:\n小猪佩奇\n你配我`}
           rows="8"
         ></textarea>
-        <button disabled={loading} className="submit" onClick={handleSubmit}>
+        <button disabled={loading || !content} className="submit" onClick={handleSubmit}>
           提交
         </button>
       </div>

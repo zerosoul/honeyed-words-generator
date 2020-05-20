@@ -27,10 +27,10 @@
   "homepage": "https://zerosoul.github.io/hw",
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
-    "@ungap/url-search-params": "^0.1.4",
-    "apollo-boost": "^0.4.7",
-    "apollo-cache-inmemory": "^1.6.5",
-    "apollo-client": "^2.6.8",
+    "@ungap/url-search-params": "^0.2.0",
+    "apollo-boost": "^0.4.9",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
     "apollo-link-context": "^1.0.20",
     "apollo-link-http": "^1.5.17",
     "file-saver": "^2.0.2",
@@ -40,45 +40,46 @@
     "qrcode.react": "^1.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-github-btn": "^1.1.1",
+    "react-github-btn": "^1.2.0",
     "styled-components": "^5.1.0",
-    "styled-reset": "^4.1.3"
+    "styled-reset": "^4.1.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
+    "@babel/core": "^7.9.6",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
-    "css-loader": "^3.5.2",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^3.0.0",
+    "css-loader": "^3.5.3",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.2",
     "file-loader": "^6.0.0",
     "happypack": "^5.0.1",
-    "html-webpack-plugin": "^4.2.0",
+    "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.5",
     "installed-check-core": "^3.0.0",
-    "lint-staged": "^10.1.6",
+    "lint-staged": "^10.2.4",
     "mini-css-extract-plugin": "^0.9.0",
-    "prettier": "^2.0.4",
-    "react-dev-utils": "10.1.0",
-    "style-loader": "^1.1.4",
-    "terser-webpack-plugin": "^2.3.5",
+    "pnp-webpack-plugin": "^1.6.4",
+    "prettier": "^2.0.5",
+    "react-dev-utils": "10.2.1",
+    "style-loader": "^1.2.1",
+    "terser-webpack-plugin": "^3.0.1",
     "url-loader": "^4.1.0",
-    "webpack": "^4.42.1",
-    "webpack-bundle-analyzer": "^3.7.0",
+    "webpack": "^4.43.0",
+    "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3",
+    "webpack-dev-server": "^3.11.0",
     "webpack-manifest-plugin": "^2.2.0",
     "webpack-merge": "^4.2.2",
-    "workbox-webpack-plugin": "^5.1.2"
+    "workbox-webpack-plugin": "^5.1.3"
   },
   "engines": {
     "node": ">=10.0.0",
@@ -86,5 +87,17 @@
   },
   "peerDependencies": {
     "react-is": "^16.13.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

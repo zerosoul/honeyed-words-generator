@@ -79,6 +79,7 @@ const StyledModal = styled.section`
 `;
 const Modal = ({ visible = false }) => {
   const [content, setContent] = useState('');
+  const [remark, setRemark] = useState('');
   const [addWords, { data, loading, error }] = useMutation(AddWords);
   useEffect(() => {
     console.log({ error });
@@ -100,7 +101,7 @@ const Modal = ({ visible = false }) => {
         insert_love_words: { returning }
       } = data;
       if (returning && returning.length > 0) {
-        alert('提交成功，我们会尽快审核并发布，您可以继续提交');
+        alert('提交成功，我会尽快审核并发布，您可以继续提交');
         setContent('');
       }
       console.log({ returning });
@@ -112,10 +113,13 @@ const Modal = ({ visible = false }) => {
       .split('\n')
       .filter((c) => c !== '')
       .join('|');
-    addWords({ variables: { content: formatedContent } });
+    addWords({ variables: { content: formatedContent, remark } });
   };
   const handleChange = (evt) => {
     setContent(evt.target.value);
+  };
+  const handleRemarkChange = (evt) => {
+    setRemark(evt.target.value);
   };
   return (
     <StyledModal className={visible ? 'visible' : 'hidden'}>
@@ -128,6 +132,15 @@ const Modal = ({ visible = false }) => {
           id="content"
           placeholder={`注意断句与换行，举例:\n小猪佩奇\n你配我`}
           rows="8"
+        ></textarea>
+        <textarea
+          className="input"
+          value={remark}
+          onChange={handleRemarkChange}
+          name="remark"
+          id="remark"
+          placeholder={`备注，可以填：\n您的大名/情话来源/想给作者的留言/联系方式`}
+          rows="4"
         ></textarea>
         <button disabled={loading || !content} className="submit" onClick={handleSubmit}>
           提交

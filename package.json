@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/zerosoul/honeyed-words-generator/issues"
   },
-  "homepage": "https://zerosoul.github.io/hw",
+  "homepage": "https://zerosoul.github.io/honeyed-words-generator",
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
     "@ungap/url-search-params": "^0.2.0",

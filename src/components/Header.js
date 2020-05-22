@@ -37,7 +37,6 @@ const WordBox = styled(StyledWordBox)`
   color: #f4b0f3;
   animation: ${AniPopIn} 1s ease forwards;
   animation-fill-mode: both;
-  font-family: 'AiQing';
   .pinyin {
     color: #f1ad93;
     font-size: 1.5rem;

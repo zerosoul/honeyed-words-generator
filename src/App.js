@@ -1,5 +1,7 @@
-import React, { lazy, Suspense, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { LoveWords } from './opts.gql';
+import { useQuery } from '@apollo/react-hooks';
 
 import { getQueryValue } from './utils';
 import Loading from './components/Loading';
@@ -10,7 +12,7 @@ import RefreshButton from './components/RefreshButton';
 import SaveButton from './components/SaveButton';
 import AddWords from './components/AddWords';
 import Card from './components/Card';
-import Words from './assets/words';
+// import Words from './assets/words';
 
 const Header = lazy(() => import('./components/Header'));
 
@@ -25,11 +27,40 @@ const MetooButton = styled(StartButton)`
   animation-delay: ${({ wordCount }) => `${wordCount * 0.3}s`};
 `;
 const wordsIdx = getQueryValue('idx');
-const wordCount = wordsIdx !== '' ? Words[wordsIdx].length : 0;
 const hasWords = wordsIdx !== '';
 const App = () => {
+  const { data, error } = useQuery(LoveWords);
+  const [words, setWords] = useState([]);
+  const [wordCount, setWordCount] = useState(0);
+
   const [start, setStart] = useState(hasWords);
   const [loading, setLoading] = useState(!hasWords);
+  console.log({ data });
+  useEffect(() => {
+    if (error) {
+      const { graphQLErrors } = error;
+      console.log({ graphQLErrors });
+
+      const {
+        extensions: { code }
+      } = graphQLErrors[0];
+      if (code == 'access-denied') {
+        alert('缺少token，无权访问');
+      } else {
+        alert('接口报错了，请联系作者，VX:yanggc_2018');
+      }
+    }
+  }, [error]);
+  useEffect(() => {
+    if (data) {
+      let wordArr = data.love_words.map((w) => w.content);
+      setWords(wordArr);
+      console.log({ wordArr });
+
+      let count = wordsIdx !== '' ? wordArr[wordsIdx].length : 0;
+      setWordCount(count);
+    }
+  }, [data]);
   const handleStart = () => {
     setStart(true);
     setLoading(true);
@@ -40,6 +71,7 @@ const App = () => {
   const handleUpdate = () => {
     setLoading(true);
   };
+
   return (
     <Suspense fallback={<Loading />}>
       {!hasWords && <InfoModal />}
@@ -49,7 +81,7 @@ const App = () => {
       <SaveButton visible={start && !loading && !hasWords} />
       {!start && <Header handleStart={handleStart} />}
       <LoadingWords visible={start && loading} handleDone={handleDone} />
-      <Card wordsIdx={wordsIdx} visible={start && !loading} />
+      <Card wordArr={words} wordsIdx={wordsIdx} visible={start && !loading} />
       {start && !loading && hasWords && (
         <MetooButton
           wordCount={wordCount}

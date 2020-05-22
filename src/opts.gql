@@ -1,0 +1,14 @@
+query LoveWords {
+  love_words(where: { draft: { _eq: false } }) {
+    id
+    content
+    remark
+  }
+}
+mutation AddWords($content: String!, $remark: String) {
+  insert_love_words(objects: { content: $content, remark: $remark }) {
+    returning {
+      id
+    }
+  }
+}

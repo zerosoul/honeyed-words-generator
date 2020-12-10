@@ -1,3 +1,5 @@
+'use strict';
+
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
@@ -7,18 +9,20 @@ delete require.cache[require.resolve('./paths')];
 
 const NODE_ENV = process.env.NODE_ENV;
 if (!NODE_ENV) {
-  throw new Error('The NODE_ENV environment variable is required but was not specified.');
+  throw new Error(
+    'The NODE_ENV environment variable is required but was not specified.'
+  );
 }
 
 // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
 const dotenvFiles = [
   `${paths.dotenv}.${NODE_ENV}.local`,
-  `${paths.dotenv}.${NODE_ENV}`,
   // Don't include `.env.local` for `test` environment
   // since normally you expect tests to produce the same
   // results for everyone
   NODE_ENV !== 'test' && `${paths.dotenv}.local`,
-  paths.dotenv
+  `${paths.dotenv}.${NODE_ENV}`,
+  paths.dotenv,
 ].filter(Boolean);
 
 // Load environment variables from .env* files. Suppress warnings using silent
@@ -30,7 +34,7 @@ dotenvFiles.forEach(dotenvFile => {
   if (fs.existsSync(dotenvFile)) {
     require('dotenv-expand')(
       require('dotenv').config({
-        path: dotenvFile
+        path: dotenvFile,
       })
     );
   }
@@ -80,7 +84,12 @@ function getClientEnvironment(publicUrl) {
         // and `sockPort` options in webpack-dev-server.
         WDS_SOCKET_HOST: process.env.WDS_SOCKET_HOST,
         WDS_SOCKET_PATH: process.env.WDS_SOCKET_PATH,
-        WDS_SOCKET_PORT: process.env.WDS_SOCKET_PORT
+        WDS_SOCKET_PORT: process.env.WDS_SOCKET_PORT,
+        // Whether or not react-refresh is enabled.
+        // react-refresh is not 100% stable at this time,
+        // which is why it's disabled by default.
+        // It is defined here so it is available in the webpackHotDevClient.
+        FAST_REFRESH: process.env.FAST_REFRESH !== 'false',
       }
     );
   // Stringify all values so we can feed into webpack DefinePlugin
@@ -88,7 +97,7 @@ function getClientEnvironment(publicUrl) {
     'process.env': Object.keys(raw).reduce((env, key) => {
       env[key] = JSON.stringify(raw[key]);
       return env;
-    }, {})
+    }, {}),
   };
 
   return { raw, stringified };

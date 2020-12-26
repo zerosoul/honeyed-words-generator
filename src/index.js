@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import GlobalStyle from './Global.style';
-import { ApolloClient } from 'apollo-client';
-import { HttpLink } from 'apollo-link-http';
-import { setContext } from 'apollo-link-context';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloClient } from '@apollo/client/core';
+import { HttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { InMemoryCache } from '@apollo/client/cache';
+import { ApolloProvider } from '@apollo/client';
 import register from './registerServiceWorker';
 console.log('process env', process.env);
 

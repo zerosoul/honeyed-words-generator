@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { AddWords } from '../opts.gql';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import StyledButton from './StyledButton';
 import ImageAdd from '../assets/img/add.words.svg';
 import ImageClose from '../assets/img/close.svg';

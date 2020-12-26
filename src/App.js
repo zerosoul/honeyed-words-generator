@@ -1,19 +1,20 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { LoveWords } from './opts.gql';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 
 import { getQueryValue } from './utils';
 import Loading from './components/Loading';
-import ShareQR from './components/ShareQR';
-import LoadingWords from './components/LoadingWords';
-import StartButton from './components/StartButton';
-import RefreshButton from './components/RefreshButton';
-import SaveButton from './components/SaveButton';
 import AddWords from './components/AddWords';
-import Card from './components/Card';
 // import Words from './assets/words';
 
+// const Card = lazy(() => import('./components/Card'));
+const Card = lazy(() => import('./components/Card'));
+const LoadingWords = lazy(() => import('./components/LoadingWords'));
+const StartButton = lazy(() => import('./components/StartButton'));
+const RefreshButton = lazy(() => import('./components/RefreshButton'));
+const SaveButton = lazy(() => import('./components/SaveButton'));
+const ShareQR = lazy(() => import('./components/ShareQR'));
 const Header = lazy(() => import('./components/Header'));
 
 const InfoModal = lazy(() => import('./components/InfoModal'));

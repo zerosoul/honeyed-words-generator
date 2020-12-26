@@ -328,8 +328,8 @@ module.exports = function (webpackEnv) {
               // See https://github.com/webpack/webpack/issues/6571
               sideEffects: true
             },
-             // graphql file
-             {
+            // graphql file
+            {
               test: /\.(graphql|gql)$/,
               exclude: /node_modules/,
               loader: 'graphql-tag/loader'

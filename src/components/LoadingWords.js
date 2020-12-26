@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import Words from '../assets/words';
 import StyledWordBox from './StyledWordBox';
@@ -37,19 +37,10 @@ const WordBox = styled(StyledWordBox)`
 `;
 const reg = /[\u4e00-\u9fa5]/g;
 // 去重
-const words = [
-  ...new Set(
-    Words.join('')
-      .match(reg)
-      .join('')
-      .split('')
-  )
-]
-  .join('')
-  .substring(0, 100);
+const words = [...new Set(Words.join('').match(reg).join('').split(''))].join('').substring(0, 100);
 let timeInter = 0;
 export default function LoadingWords({ visible = false, handleDone }) {
-  const handleUpdateWord = evt => {
+  const handleUpdateWord = (evt) => {
     let idx = Math.floor(Math.random() * words.length);
     let newWord = words[idx];
     evt.target.innerHTML = newWord;

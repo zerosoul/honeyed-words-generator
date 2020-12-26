@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { LoveWords } from './opts.gql';
 import { useQuery } from '@apollo/client';

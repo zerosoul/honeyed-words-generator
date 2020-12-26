@@ -1,12 +1,10 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import GlobalStyle from './Global.style';
 import { ApolloClient } from '@apollo/client/core';
-import { HttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { InMemoryCache } from '@apollo/client/cache';
-import { ApolloProvider } from '@apollo/client';
+import { ApolloProvider, HttpLink } from '@apollo/client';
 import register from './registerServiceWorker';
 console.log('process env', process.env);
 

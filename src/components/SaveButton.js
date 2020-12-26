@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
@@ -31,7 +31,7 @@ export default function SaveButton({ visible }) {
     setGenerating(true);
     html2canvas(ele, {
       debug: process.env.NODE_ENV !== 'production',
-      onclone: document => {
+      onclone: (document) => {
         let tmp = document.querySelector('#HONEYED_WORDS_CARD');
         tmp.classList.add('starting');
         tmp.style.transform = 'none';
@@ -39,13 +39,13 @@ export default function SaveButton({ visible }) {
         console.log('dommmm', tmp.innerHTML);
       },
       scale: window.devicePixelRatio * (isWebview ? 2 : 1)
-    }).then(function(canvas) {
+    }).then(function (canvas) {
       console.log(canvas);
       if (isWebview) {
         console.log('weixin');
         let img = document.createElement('img');
 
-        canvas.toBlob(blob => {
+        canvas.toBlob((blob) => {
           const {
             URL: { createObjectURL }
           } = window;
@@ -56,7 +56,7 @@ export default function SaveButton({ visible }) {
         ele.appendChild(img);
         setGenerating(false);
       } else {
-        canvas.toBlob(blob => {
+        canvas.toBlob((blob) => {
           saveAs(blob, `hw-${new Date().getTime()}.png`);
           setGenerating(false);
         }, 'image/png');

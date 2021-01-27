@@ -111,11 +111,11 @@ const Modal = ({ visible = false }) => {
       <div className="qr hidden" id="QR_DOWNLOAD">
         <div className="img">
           <CodeQR
-            renderAs="svg"
+            renderAs="canvas"
             imageSettings={{ width: 30, height: 30, src: ImageLogo, excavate: true }}
             size={256}
             bgColor="#fff"
-            level="Q"
+            level="M"
             fgColor="#000"
             includeMargin={true}
             value={`${window.location.href.split('?')[0]}?idx=${window.CUR_WORDS_IDX}`}

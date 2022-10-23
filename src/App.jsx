@@ -1,7 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { LoveWords } from './opts.gql';
-import { useQuery } from '@apollo/client';
+import { useQuery, gql } from '@apollo/client';
 
 import { getQueryValue } from './utils';
 import Loading from './components/Loading';
@@ -29,6 +28,15 @@ const MetooButton = styled(StartButton)`
 `;
 const wordsIdx = getQueryValue('idx');
 const hasWords = wordsIdx !== '';
+const LoveWords = gql`
+  query LoveWords {
+    love_words(where: { draft: { _eq: false } }) {
+      id
+      content
+      remark
+    }
+  }
+`;
 const App = () => {
   const { data, error } = useQuery(LoveWords);
   const [words, setWords] = useState([]);

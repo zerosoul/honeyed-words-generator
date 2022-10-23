@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { AddWords } from '../opts.gql';
-import { useMutation } from '@apollo/client';
+import { useMutation, gql } from '@apollo/client';
 import StyledButton from './StyledButton';
 import ImageAdd from '../assets/img/add.words.svg';
 import ImageClose from '../assets/img/close.svg';
@@ -73,6 +72,15 @@ const StyledModal = styled.section`
       cursor: pointer;
       &[disabled] {
         color: #666;
+      }
+    }
+  }
+`;
+const AddWords = gql`
+  mutation AddWords($content: String!, $remark: String) {
+    insert_love_words(objects: { content: $content, remark: $remark }) {
+      returning {
+        id
       }
     }
   }

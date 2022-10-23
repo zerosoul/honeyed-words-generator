@@ -1,11 +1,8 @@
 import ReactDOM from 'react-dom';
 import App from './App';
 import GlobalStyle from './Global.style';
-import { ApolloClient } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
-import { InMemoryCache } from '@apollo/client/cache';
-import { ApolloProvider, HttpLink } from '@apollo/client';
-import register from './registerServiceWorker';
+import {ApolloClient, ApolloProvider, HttpLink ,InMemoryCache} from '@apollo/client';
 console.log('process env', process.env);
 
 const authLink = setContext((_, { headers }) => {
@@ -35,5 +32,3 @@ ReactDOM.render(
   </>,
   document.getElementById('root')
 );
-
-register();

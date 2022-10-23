@@ -50,7 +50,7 @@ export default function LoadingWords({ visible = false, handleDone }) {
       () => {
         handleDone();
       },
-      process.env.NODE_ENV == 'production' ? 1500 : 1500
+      import.meta.env.PROD ? 1500 : 1500
     );
     return () => {
       clearTimeout(timeInter);

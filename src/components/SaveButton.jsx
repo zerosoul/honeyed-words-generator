@@ -30,7 +30,7 @@ export default function SaveButton({ visible }) {
   const generateImage = async (ele, isWebview = false) => {
     setGenerating(true);
     html2canvas(ele, {
-      debug: process.env.NODE_ENV !== 'production',
+      debug: import.meta.env.DEV,
       onclone: (document) => {
         let tmp = document.querySelector('#HONEYED_WORDS_CARD');
         tmp.classList.add('starting');

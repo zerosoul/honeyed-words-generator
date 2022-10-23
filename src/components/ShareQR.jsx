@@ -88,7 +88,7 @@ const Modal = ({ visible = false }) => {
     const qrEle = document.querySelector('#QR_DOWNLOAD');
     if (visible) {
       html2canvas(qrEle, {
-        debug: process.env.NODE_ENV !== 'production',
+        debug: import.meta.env.DEV,
         onclone: (doc) => {
           let tmp = doc.querySelector('#QR_DOWNLOAD');
           tmp.classList.remove('hidden');

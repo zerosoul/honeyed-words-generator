@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import CodeQR from 'qrcode.react';
+import { QRCodeCanvas } from 'qrcode.react';
 import html2canvas from 'html2canvas';
 
 import StyledButton from './StyledButton';
@@ -105,8 +105,7 @@ const Modal = ({ visible = false }) => {
       <div className="title">👇长按或右键保存，发朋友圈或发给 TA 表白👇</div>
       <div className="qr hidden" id="QR_DOWNLOAD">
         <div className="img">
-          <CodeQR
-            renderAs="canvas"
+          <QRCodeCanvas
             imageSettings={{ width: 30, height: 30, src: ImageLogo, excavate: true }}
             size={256}
             bgColor="#fff"

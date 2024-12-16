@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import CodeQR from 'qrcode.react';
+import { QRCodeSVG } from 'qrcode.react';
 
 import { getQueryValue, shuffle } from '../utils';
 import ImageLogo from '../assets/img/logo.png';
@@ -220,14 +220,13 @@ export default function Card({ wordArr = [], visible = false }) {
           />
         ))}
         <div className="dbg qr">
-          <CodeQR
-            renderAs="svg"
+          <QRCodeSVG
             imageSettings={{ width: 10, height: 10, src: ImageLogo, excavate: true }}
             size={50}
             bgColor="#f2f2f2"
             level="Q"
             fgColor="#000"
-            includeMargin={false}
+            marginSize={0}
             value={`${window.location.href.split('?')[0]}`}
           />
           <div className="tip">土味情话</div>

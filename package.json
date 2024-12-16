@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/zerosoul/honeyed-words-generator/issues"
   },
-  "homepage": "https://honeyed.yangerxiao.com",
+  "homepage": "https://honey.yangerxiao.com",
   "dependencies": {
     "file-saver": "^2.0.5",
     "html2canvas": "^1.4.1",

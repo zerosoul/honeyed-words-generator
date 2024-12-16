@@ -3,18 +3,21 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import GitHubButton from 'react-github-btn';
 import StyledButton from './StyledButton';
-import ImageInfo from '../assets/img/info.svg';
-import ImageClose from '../assets/img/close.svg';
 import ImageReward from '../assets/img/reward.jpg';
 import { AniSlideLeft } from './animates';
+import { MdClose, MdInfo } from 'react-icons/md';
 const InfoButton = styled(StyledButton)`
   position: fixed;
   right: 0.5rem;
   bottom: 0.5rem;
   margin-right: 0.5rem;
-  background-image: url(${ImageInfo});
-  &.close {
-    background-image: url(${ImageClose});
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  > svg {
+    width: 28px;
+    height: 28px;
   }
 `;
 const StyledModal = styled.section`
@@ -115,7 +118,9 @@ export default function InfoModal() {
     <>
       <Modal visible={visible} />
 
-      <InfoButton className={`${visible ? 'close' : ''}`} onClick={handleInfoClick}></InfoButton>
+      <InfoButton className={`${visible ? 'close' : ''}`} onClick={handleInfoClick}>
+        {visible ? <MdClose /> : <MdInfo />}
+      </InfoButton>
     </>
   );
 }

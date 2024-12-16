@@ -5,10 +5,10 @@ import pkg from './package.json';
 export default defineConfig({
   base: new URL(pkg.homepage).pathname,
   server: {
-    port: 3010,
+    port: 3010
   },
   esbuild: {
-    drop: ['console', 'debugger'],
+    drop: process.env.NODE_ENV == 'production' ? ['console', 'debugger'] : []
   },
-  plugins: [react()],
+  plugins: [react()]
 });

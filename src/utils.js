@@ -1,5 +1,4 @@
 /* eslint-disable no-useless-escape */
-import URLSearchParams from '@ungap/url-search-params';
 
 export function shuffle(array) {
   let counter = array.length;
@@ -43,7 +42,7 @@ export function getQueryValue(key = '') {
 }
 export async function sleep(dur = 2) {
   const misDur = dur * 1000;
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve();
     }, misDur);

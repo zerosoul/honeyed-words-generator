@@ -2,8 +2,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
-import ImageDownload from '../assets/img/download.svg';
+// import ImageDownload from '../assets/img/download.svg';
 import StyledButton from './StyledButton';
+import { MdDownload } from 'react-icons/md';
 
 const ua = navigator.userAgent;
 const isiOSwebview = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(ua);
@@ -12,8 +13,14 @@ const Button = styled(StyledButton)`
   position: fixed;
   left: 0.5rem;
   bottom: 0.5rem;
-
-  background-image: url(${ImageDownload});
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  > svg {
+    width: 28px;
+    height: 28px;
+  }
 `;
 
 export default function SaveButton({ visible }) {
@@ -70,6 +77,8 @@ export default function SaveButton({ visible }) {
       className={visible ? 'visible' : 'hidden'}
       disabled={generating}
       onClick={handleDownload}
-    ></Button>
+    >
+      <MdDownload />
+    </Button>
   );
 }

@@ -9,7 +9,7 @@ const rotate = keyframes`
 }
 `;
 
-const rotateBall = props => keyframes`
+const rotateBall = (props) => keyframes`
 ${(((props.size / 2 / props.countBalls) * (props.index - 1)) / props.size) * 100}% {
     opacity: 0;
 }
@@ -20,8 +20,10 @@ ${(((props.size / 2 / props.countBalls + 0.0001) * (props.index - 1)) / props.si
 ${(((props.size / 2 / props.countBalls) * (props.index - 0) + 2) / props.size) * 100}% {
     transform: ${`rotateZ(${0 - (360 / props.countBalls) * (props.index - 1)}deg)`};
 }
-${((props.size / 2 + (props.size / 2 / props.countBalls) * (props.index - 0) + 2) / props.size) *
-  100}% {
+${
+  ((props.size / 2 + (props.size / 2 / props.countBalls) * (props.index - 0) + 2) / props.size) *
+  100
+}% {
     transform: ${`rotateZ(${0 - (360 / props.countBalls) * (props.index - 1)}deg)`};
 }
 100% {
@@ -73,19 +75,19 @@ const Wrapper = styled.div`
 
 const Ball = styled.div`
   position: absolute;
-  width: ${props => `${props.size}${props.sizeUnit}`};
-  height: ${props => `${props.size}${props.sizeUnit}`};
+  width: ${(props) => `${props.size}${props.sizeUnit}`};
+  height: ${(props) => `${props.size}${props.sizeUnit}`};
   animation: ${rotateBall} 2s infinite linear;
-  transform: ${props => `rotateZ(${(360 / props.countBalls) * props.index}deg)`};
+  transform: ${(props) => `rotateZ(${(360 / props.countBalls) * props.index}deg)`};
   opacity: 0;
   &:before {
     content: '';
     position: absolute;
     left: 50%;
     top: 0%;
-    width: ${props => `${props.ballSize}${props.sizeUnit}`};
-    height: ${props => `${props.ballSize}${props.sizeUnit}`};
-    background-color: ${props => `${props.color}`};
+    width: ${(props) => `${props.ballSize}${props.sizeUnit}`};
+    height: ${(props) => `${props.ballSize}${props.sizeUnit}`};
+    background-color: ${(props) => `${props.color}`};
     transform: translateX(-50%);
     border-radius: 50%;
   }

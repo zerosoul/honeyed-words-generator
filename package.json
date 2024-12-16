@@ -20,22 +20,20 @@
   "bugs": {
     "url": "https://github.com/zerosoul/honeyed-words-generator/issues"
   },
-  "homepage": "https://zerosoul.github.io/honeyed-words-generator",
+  "homepage": "https://honeyed.yangerxiao.com",
   "dependencies": {
-    "@apollo/client": "^3.7.0",
-    "@ungap/url-search-params": "^0.2.2",
     "file-saver": "^2.0.5",
-    "graphql": "^16.6.0",
     "html2canvas": "^1.4.1",
-    "qrcode.react": "^3.1.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "qrcode.react": "^4.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-github-btn": "^1.4.0",
-    "styled-components": "^5.3.6",
-    "styled-reset": "^4.4.2"
+    "react-icons": "^5.4.0",
+    "styled-components": "^6.1.13",
+    "styled-reset": "^4.5.2"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^2.1.0",
+    "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.31.10",
@@ -43,10 +41,10 @@
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
-    "vite": "^3.1.8"
+    "vite": "^6.0.3"
   },
   "engines": {
-    "node": ">=15.0.0",
+    "node": ">=18.0.0",
     "npm": ">=7.0.0"
   },
   "scripts": {
